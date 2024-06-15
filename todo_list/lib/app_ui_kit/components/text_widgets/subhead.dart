@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:todo_list/app_ui_kit/components/font_sizes.dart';
 import 'package:todo_list/app_ui_kit/components/text_widgets/base_text_widget.dart';
 
 class Subhead extends TextWidget {
@@ -7,7 +8,7 @@ class Subhead extends TextWidget {
     super.key,
   }) : super(
           text,
-          fontSize: 14,
+          fontSize: FontSizes.small,
           fontWeight: FontWeight.w400,
         );
 }
