@@ -5,13 +5,11 @@ import 'package:todo_list/presentation/main_page/widgets/slidable/app_slidable_a
 
 class SlidableItemWrapper extends StatelessWidget {
   const SlidableItemWrapper({
-    required this.index,
     required this.child,
     required this.onDone,
     required this.onDelete,
-    super.key,
+    required super.key,
   });
-  final int index;
   final Widget child;
   final void Function() onDone;
   final void Function() onDelete;
@@ -20,7 +18,7 @@ class SlidableItemWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaffoldColor = Theme.of(context).scaffoldBackgroundColor;
     return Slidable(
-      key: ValueKey(index),
+      key: key,
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [

@@ -11,12 +11,10 @@ class TodoListItem extends StatelessWidget {
     required this.onDelete,
     required this.onDone,
     required this.task,
-    required this.index,
     super.key,
   });
 
   final TaskModel task;
-  final int index;
   final void Function() onDone;
   final void Function() onDelete;
   final void Function(bool? value) onCheckBoxChange;
@@ -42,7 +40,7 @@ class TodoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SlidableItemWrapper(
-      index: index,
+      key: ObjectKey(task),
       onDone: onDone,
       onDelete: onDelete,
       child: Container(
