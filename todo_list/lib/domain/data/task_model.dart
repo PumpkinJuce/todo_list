@@ -1,28 +1,19 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'task_model.freezed.dart';
+part 'task_model.g.dart';
 
 enum PriorityLevel { low, medium, heigh }
 
-class TaskModel extends Equatable {
-  const TaskModel({
-    required this.title,
-    required this.isDone,
-    this.description,
-    this.date,
-    this.priority = PriorityLevel.low,
-  });
+@freezed
+class TaskModel with _$TaskModel {
+  const factory TaskModel({
+    required String title,
+    required bool isDone,
+    required PriorityLevel priority,
+    String? description,
+    DateTime? date,
+  }) = _TaskModel;
 
-  final String title;
-  final String? description;
-  final DateTime? date;
-  final bool isDone;
-  final PriorityLevel priority;
-
-  @override
-  List<Object?> get props => [
-        title,
-        description,
-        date,
-        isDone,
-        priority,
-      ];
+  factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 }

@@ -7,10 +7,15 @@ class SlidableItemWrapper extends StatelessWidget {
   const SlidableItemWrapper({
     required this.index,
     required this.child,
+    required this.onDone,
+    required this.onDelete,
     super.key,
   });
   final int index;
   final Widget child;
+  final void Function() onDone;
+  final void Function() onDelete;
+
   @override
   Widget build(BuildContext context) {
     final scaffoldColor = Theme.of(context).scaffoldBackgroundColor;
@@ -18,10 +23,9 @@ class SlidableItemWrapper extends StatelessWidget {
       key: ValueKey(index),
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
-        dismissible: DismissiblePane(onDismissed: () {}),
         children: [
           AppSlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) => onDone.call(),
             backgroundColor: scaffoldColor,
             iconBackgroundColor: AppColors.green,
             icon: Icons.check,
@@ -30,10 +34,10 @@ class SlidableItemWrapper extends StatelessWidget {
       ),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(onDismissed: onDelete),
         children: [
           AppSlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) => onDelete.call(),
             backgroundColor: scaffoldColor,
             iconBackgroundColor: AppColors.red,
             icon: Icons.delete,

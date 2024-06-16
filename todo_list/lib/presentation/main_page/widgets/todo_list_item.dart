@@ -6,14 +6,20 @@ import 'package:todo_list/presentation/main_page/widgets/priority_indicator.dart
 import 'package:todo_list/presentation/main_page/widgets/slidable/slidable_item_wrapper.dart';
 
 class TodoListItem extends StatelessWidget {
-  const TodoListItem(
-    this.task, {
+  const TodoListItem({
+    required this.onCheckBoxChange,
+    required this.onDelete,
+    required this.onDone,
+    required this.task,
     required this.index,
     super.key,
   });
 
   final TaskModel task;
   final int index;
+  final void Function() onDone;
+  final void Function() onDelete;
+  final void Function(bool? value) onCheckBoxChange;
 
   Widget _date(BuildContext context) {
     final date = task.date;
@@ -37,6 +43,8 @@ class TodoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableItemWrapper(
       index: index,
+      onDone: onDone,
+      onDelete: onDelete,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -55,7 +63,7 @@ class TodoListItem extends StatelessWidget {
             Checkbox(
               checkColor: Colors.white,
               value: task.isDone,
-              onChanged: (bool? value) {},
+              onChanged: onCheckBoxChange,
             ),
             Expanded(
               child: Column(
