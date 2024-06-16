@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/components/app_colors.dart';
-
-enum PriorityLevel {
-  low(0, AppColors.gray),
-  medium(2, AppColors.blue),
-  height(3, AppColors.red);
-
-  const PriorityLevel(this.iconCount, this.color);
-  final int iconCount;
-  final Color color;
-}
+import 'package:todo_list/domain/data/task_model.dart';
 
 class PriorityIndicator extends StatelessWidget {
   const PriorityIndicator(this.level, {super.key});
