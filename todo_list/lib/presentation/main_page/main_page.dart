@@ -33,7 +33,9 @@ class MainPage extends StatelessWidget {
               ),
               title: Text(
                 'Мои дела',
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      color: AppColors.white,
+                    ),
               ),
             ),
           ),

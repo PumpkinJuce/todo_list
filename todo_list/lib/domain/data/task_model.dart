@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:equatable/equatable.dart';
-import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
+
+enum PriorityLevel { low, medium, heigh }
 
 class TaskModel extends Equatable {
   const TaskModel({
@@ -26,14 +25,4 @@ class TaskModel extends Equatable {
         isDone,
         priority,
       ];
-}
-
-enum PriorityLevel {
-  low(0, AppColors.gray),
-  medium(2, AppColors.blue),
-  height(3, AppColors.red);
-
-  const PriorityLevel(this.iconCount, this.color);
-  final int iconCount;
-  final Color color;
 }

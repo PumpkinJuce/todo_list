@@ -18,7 +18,7 @@ final ThemeData lightTheme = ThemeData(
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
-      fontSize: 32,
+      fontSize: 26,
       fontWeight: FontWeight.w700,
       color: AppColors.black,
       overflow: TextOverflow.ellipsis,

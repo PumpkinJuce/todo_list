@@ -39,7 +39,7 @@ class TodoListItem extends StatelessWidget {
       index: index,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           color: AppColors.backSecondary,
         ),
         margin: const EdgeInsets.only(
@@ -47,8 +47,9 @@ class TodoListItem extends StatelessWidget {
           right: 12,
           top: 5,
         ),
+        padding: const EdgeInsets.all(8),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Checkbox(
@@ -57,33 +58,24 @@ class TodoListItem extends StatelessWidget {
               onChanged: (bool? value) {},
             ),
             Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 14,
-                    bottom: 6,
-                    right: 6,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    task.title,
+                    maxLines: 3,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        task.title,
-                        maxLines: 3,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      _date(context),
-                    ],
-                  )),
+                  _date(context),
+                ],
+              ),
             ),
-            // const Icon(
-            //   Icons.info_outline,
-            //   color: AppColors.labelTertiary,
-            // ),
+            const SizedBox(width: 3),
             Padding(
-              padding: const EdgeInsets.only(top: 15, right: 10),
+              padding: const EdgeInsets.only(top: 3),
               child: PriorityIndicator(task.priority),
-            )
+            ),
           ],
         ),
       ),

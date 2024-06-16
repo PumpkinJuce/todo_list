@@ -11,7 +11,7 @@ final mockTasks = [
       description: 'description',
       date: DateTime.now(),
       isDone: true,
-      priority: PriorityLevel.height),
+      priority: PriorityLevel.heigh),
   TaskModel(
     title: 'Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW ',
     description: 'description',
@@ -34,7 +34,7 @@ final mockTasks = [
       description: 'description',
       date: DateTime.now(),
       isDone: true,
-      priority: PriorityLevel.height),
+      priority: PriorityLevel.heigh),
   TaskModel(
     title: 'Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW ',
     description: 'description',
@@ -57,7 +57,7 @@ final mockTasks = [
       description: 'description',
       date: DateTime.now(),
       isDone: true,
-      priority: PriorityLevel.height),
+      priority: PriorityLevel.heigh),
   TaskModel(
     title: 'Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW Old TASK BUT MOW ',
     description: 'description',

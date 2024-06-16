@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/components/app_colors.dart';
 import 'package:todo_list/domain/data/task_model.dart';
 
+extension PriorityLevelExtension on PriorityLevel {
+  int get iconCount => switch (this) {
+        PriorityLevel.low => 0,
+        PriorityLevel.medium => 2,
+        PriorityLevel.heigh => 3,
+      };
+  Color get iconColor => switch (this) {
+        PriorityLevel.low => AppColors.gray,
+        PriorityLevel.medium => AppColors.blue,
+        PriorityLevel.heigh => AppColors.red,
+      };
+}
+
 class PriorityIndicator extends StatelessWidget {
   const PriorityIndicator(this.level, {super.key});
   final PriorityLevel level;
@@ -16,7 +29,7 @@ class PriorityIndicator extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2.0),
           child: _LevelIcon(
-            color: level.color,
+            color: level.iconColor,
           ),
         );
       }),
