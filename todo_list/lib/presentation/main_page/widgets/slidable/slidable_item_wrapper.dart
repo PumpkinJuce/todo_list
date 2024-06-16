@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
-import 'package:todo_list/main_page/presentation/widgets/slidable/app_slidable_action.dart';
+import 'package:todo_list/presentation/main_page/widgets/slidable/app_slidable_action.dart';
 
 class SlidableItemWrapper extends StatelessWidget {
   const SlidableItemWrapper({

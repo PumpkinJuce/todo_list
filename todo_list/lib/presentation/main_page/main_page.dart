@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
-import 'package:todo_list/main_page/presentation/widgets/todo_list_item.dart';
+import 'package:todo_list/presentation/main_page/widgets/todo_list_item.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo_list/main_page/presentation/widgets/slidable/slidable_action_icon_widget.dart';
+import 'package:todo_list/presentation/main_page/widgets/slidable/slidable_action_icon_widget.dart';
 
 typedef SlidableActionCallback = void Function(BuildContext context);
 

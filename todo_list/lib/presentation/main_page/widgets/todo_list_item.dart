@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
-import 'package:todo_list/main_page/presentation/widgets/priority_indicator.dart';
-import 'package:todo_list/main_page/presentation/widgets/slidable/slidable_item_wrapper.dart';
+import 'package:todo_list/presentation/main_page/widgets/priority_indicator.dart';
+import 'package:todo_list/presentation/main_page/widgets/slidable/slidable_item_wrapper.dart';
 
 class TodoListItem extends StatelessWidget {
   const TodoListItem({
