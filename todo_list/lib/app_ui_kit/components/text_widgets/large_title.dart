@@ -4,11 +4,11 @@ import 'package:todo_list/app_ui_kit/components/text_widgets/base_text_widget.da
 
 class LargeTitle extends TextWidget {
   const LargeTitle(
-    String text, {
+    super.text, {
     super.key,
   }) : super(
-          text,
           maxLines: 1,
+          color: Colors.white,
           fontSize: FontSizes.large,
           fontWeight: FontWeight.w700,
         );

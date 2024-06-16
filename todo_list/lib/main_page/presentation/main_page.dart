@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
+import 'package:todo_list/main_page/presentation/widgets/todo_list_item.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -10,6 +11,7 @@ class MainPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         shape: const CircleBorder(),
+        backgroundColor: AppColors.blue,
         child: const Icon(
           Icons.add,
           size: 40,
@@ -18,24 +20,30 @@ class MainPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
             floating: true,
             pinned: true,
             expandedHeight: 150,
+            backgroundColor: AppColors.blue,
             flexibleSpace: FlexibleSpaceBar(
-              title: LargeTitle('Мои дела'),
+              background: Image.asset(
+                'assets/clouds.jpg',
+                fit: BoxFit.cover,
+              ),
+              title: const LargeTitle('Мои дела'),
             ),
           ),
           SliverList.builder(
-              itemCount: 50,
-              itemBuilder: (context, index) {
-                return Container(
-                  color: Colors.red,
-                  height: 40,
-                  width: 800,
-                  margin: const EdgeInsets.only(bottom: 10),
-                );
-              }),
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return TodoListItem(
+                subtitle: 'Data',
+                title:
+                    'Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 Title reuterit re retuieriyt 34 ',
+                index: index,
+              );
+            },
+          ),
         ],
       ),
     );

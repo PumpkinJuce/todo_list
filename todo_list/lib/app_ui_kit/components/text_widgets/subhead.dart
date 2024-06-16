@@ -4,10 +4,11 @@ import 'package:todo_list/app_ui_kit/components/text_widgets/base_text_widget.da
 
 class Subhead extends TextWidget {
   const Subhead(
-    String text, {
+    super.text, {
+    super.color,
+    super.maxLines,
     super.key,
   }) : super(
-          text,
           fontSize: FontSizes.small,
           fontWeight: FontWeight.w400,
         );

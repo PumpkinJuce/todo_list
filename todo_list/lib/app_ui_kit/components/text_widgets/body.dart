@@ -4,10 +4,10 @@ import 'package:todo_list/app_ui_kit/components/text_widgets/base_text_widget.da
 
 class Body extends TextWidget {
   const Body(
-    String text, {
+    super.text, {
+    super.maxLines,
     super.key,
   }) : super(
-          text,
           fontSize: FontSizes.normal,
           fontWeight: FontWeight.w400,
         );
