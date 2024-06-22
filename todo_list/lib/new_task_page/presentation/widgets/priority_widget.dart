@@ -16,12 +16,12 @@ class PriorityWidget extends StatelessWidget {
       return DecoratedContainer(
         width: MediaQuery.sizeOf(context).width,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Приоритет',
+              'Приоритет :',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
+            const SizedBox(width: 10),
             const _DropDownButton(),
           ],
         ),
@@ -32,7 +32,7 @@ class PriorityWidget extends StatelessWidget {
 
 extension PriorityLevelExtension on PriorityLevel {
   String get title => switch (this) {
-        PriorityLevel.low => 'Низкий',
+        PriorityLevel.low => 'Нет',
         PriorityLevel.medium => 'Средний',
         PriorityLevel.heigh => 'Высокий',
       };
@@ -46,18 +46,22 @@ class _DropDownButton extends StatelessWidget {
     return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
         builder: (context, state) {
       final textTheme = Theme.of(context).textTheme;
+
       return DropdownButton(
         items: PriorityLevel.values.map((PriorityLevel priority) {
           return DropdownMenuItem<PriorityLevel>(
             value: priority,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   priority.title,
                   style: textTheme.bodyLarge,
                 ),
-                const SizedBox(width: 12),
-                PriorityIndicator(priority),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: PriorityIndicator(priority),
+                ),
               ],
             ),
           );

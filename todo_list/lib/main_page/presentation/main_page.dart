@@ -63,6 +63,10 @@ class MainPage extends StatelessWidget {
                   );
                 },
               ),
+              if (tasks.isEmpty)
+                const SliverToBoxAdapter(
+                  child: _AddNewTaskButton(),
+                ),
             ],
           ),
         );

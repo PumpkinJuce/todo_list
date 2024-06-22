@@ -102,7 +102,11 @@ class _SaveButton extends StatelessWidget {
   final TaskModel? task;
   final TextEditingController controller;
 
-  void _onSave(NewTaskPageState state, BuildContext context) {
+  bool isValid() {
+    return controller.text.trim().isNotEmpty;
+  }
+
+  void _updateOrSaveTask(NewTaskPageState state, BuildContext context) {
     final bloc = context.read<TodosBloc>();
     final task = this.task;
     if (task != null) {
@@ -124,6 +128,17 @@ class _SaveButton extends StatelessWidget {
         )),
       );
     }
+  }
+
+  void _onSave(NewTaskPageState state, BuildContext context) {
+    if (!isValid()) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Введите задачу'),
+      ));
+      return;
+    }
+
+    _updateOrSaveTask(state, context);
     AppRouter.of(context).pop();
   }
 
