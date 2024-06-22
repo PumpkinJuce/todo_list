@@ -20,6 +20,7 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TaskModel {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
   PriorityLevel get priority => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $TaskModelCopyWith<$Res> {
       _$TaskModelCopyWithImpl<$Res, TaskModel>;
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       bool isDone,
       PriorityLevel priority,
       String? description,
@@ -58,6 +60,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? isDone = null,
     Object? priority = null,
@@ -65,6 +68,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? date = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -98,7 +105,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       bool isDone,
       PriorityLevel priority,
       String? description,
@@ -116,6 +124,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? isDone = null,
     Object? priority = null,
@@ -123,6 +132,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? date = freezed,
   }) {
     return _then(_$TaskModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -151,7 +164,8 @@ class __$$TaskModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TaskModelImpl implements _TaskModel {
   const _$TaskModelImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.isDone,
       required this.priority,
       this.description,
@@ -160,6 +174,8 @@ class _$TaskModelImpl implements _TaskModel {
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskModelImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String title;
   @override
@@ -173,7 +189,7 @@ class _$TaskModelImpl implements _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(title: $title, isDone: $isDone, priority: $priority, description: $description, date: $date)';
+    return 'TaskModel(id: $id, title: $title, isDone: $isDone, priority: $priority, description: $description, date: $date)';
   }
 
   @override
@@ -181,6 +197,7 @@ class _$TaskModelImpl implements _TaskModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
             (identical(other.priority, priority) ||
@@ -193,7 +210,7 @@ class _$TaskModelImpl implements _TaskModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, isDone, priority, description, date);
+      Object.hash(runtimeType, id, title, isDone, priority, description, date);
 
   @JsonKey(ignore: true)
   @override
@@ -211,7 +228,8 @@ class _$TaskModelImpl implements _TaskModel {
 
 abstract class _TaskModel implements TaskModel {
   const factory _TaskModel(
-      {required final String title,
+      {required final String id,
+      required final String title,
       required final bool isDone,
       required final PriorityLevel priority,
       final String? description,
@@ -220,6 +238,8 @@ abstract class _TaskModel implements TaskModel {
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$TaskModelImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get title;
   @override

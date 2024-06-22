@@ -8,6 +8,7 @@ enum PriorityLevel { low, medium, heigh }
 @freezed
 class TaskModel with _$TaskModel {
   const factory TaskModel({
+    required String id,
     required String title,
     required bool isDone,
     required PriorityLevel priority,

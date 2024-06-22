@@ -20,6 +20,7 @@ class SlidableActionIconWidget extends StatelessWidget {
       child: Icon(
         icon,
         color: AppColors.white,
+        size: 16,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/app_ui_kit/components/app_colors.dart';
-import 'package:todo_list/domain/data/task_model.dart';
+import 'package:todo_list/main_page/data/model/task_model.dart';
 
 extension PriorityLevelExtension on PriorityLevel {
   int get iconCount => switch (this) {
