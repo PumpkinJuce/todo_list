@@ -12,7 +12,6 @@ class TaskModel with _$TaskModel {
     required String title,
     required bool isDone,
     required PriorityLevel priority,
-    String? description,
     DateTime? date,
   }) = _TaskModel;
 

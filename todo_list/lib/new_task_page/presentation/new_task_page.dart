@@ -136,7 +136,7 @@ class _SaveButton extends StatelessWidget {
         child: Text(
           'СОХРАНИТЬ',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.blue,
+                color: AppColors.purple,
                 fontWeight: FontWeight.w500,
               ),
         ),

@@ -6,14 +6,9 @@ import 'package:todo_list/main_page/domain/bloc/todos_bloc.dart';
 import 'package:todo_list/main_page/presentation/widgets/sliver_app_bar.dart';
 import 'package:todo_list/main_page/presentation/widgets/todo_list_item.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TodosBloc, TodosState>(
@@ -25,7 +20,7 @@ class _MainPageState extends State<MainPage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () => AppRouter.of(context).pushNamed('/new-task'),
             shape: const CircleBorder(),
-            backgroundColor: AppColors.blue,
+            backgroundColor: AppColors.purple,
             child: const Icon(
               Icons.add,
               size: 40,
@@ -49,16 +44,22 @@ class _MainPageState extends State<MainPage> {
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
                   final task = tasks[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: TodoListItem(
-                      task: task,
-                      onDone: () =>
-                          bloc.add(TodosChangeStatusEvent(task, true)),
-                      onDelete: () => bloc.add(TodosDeleteEvent(task.id)),
-                      onCheckBoxChange: (value) => bloc
-                          .add(TodosChangeStatusEvent(task, value ?? false)),
-                    ),
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: TodoListItem(
+                          task: task,
+                          onDone: () =>
+                              bloc.add(TodosChangeStatusEvent(task, true)),
+                          onDelete: () => bloc.add(TodosDeleteEvent(task.id)),
+                          onCheckBoxChange: (value) => bloc.add(
+                              TodosChangeStatusEvent(task, value ?? false)),
+                        ),
+                      ),
+                      if (index == tasks.length - 1) const _AddNewTaskButton(),
+                    ],
                   );
                 },
               ),
@@ -66,6 +67,27 @@ class _MainPageState extends State<MainPage> {
           ),
         );
       },
+    );
+  }
+}
+
+class _AddNewTaskButton extends StatelessWidget {
+  const _AddNewTaskButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: InkWell(
+        onTap: () => AppRouter.of(context).pushNamed('/new-task'),
+        child: Text(
+          'Добавить задачу',
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: AppColors.labelTertiary),
+        ),
+      ),
     );
   }
 }

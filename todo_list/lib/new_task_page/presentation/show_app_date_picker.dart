@@ -16,7 +16,7 @@ Future<DateTime?> showAppDatePicker(BuildContext context) async {
       return Theme(
         data: Theme.of(context).copyWith(
           colorScheme: const ColorScheme.light(
-            primary: AppColors.blue,
+            primary: AppColors.purple,
           ),
         ),
         child: child!,

@@ -39,25 +39,3 @@ class NewTaskPageInitialState extends NewTaskPageState {
     );
   }
 }
-
-// class NewTaskPageLoadedState extends NewTaskPageState {
-//   const NewTaskPageLoadedState({
-//     required super.hasDeadline,
-//     super.deadlineDate,
-//   }) : super(isButtonActive: true);
-// }
-
-// class NewTaskPageChooseDateState extends NewTaskPageState {
-//   const NewTaskPageChooseDateState({
-//     required super.isButtonActive,
-//     super.deadlineDate,
-//   });
-
-//   @override
-//   NewTaskPageChooseDateState copyWith({bool? isButtonActive, DateTime? deadlineDate}) {
-//     return NewTaskPageChooseDateState(
-//       isButtonActive: isButtonActive ?? this.isButtonActive,
-//       deadlineDate: deadlineDate ?? this.deadlineDate,
-//     );
-//   }
-// }

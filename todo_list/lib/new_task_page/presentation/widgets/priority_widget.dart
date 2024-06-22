@@ -39,7 +39,7 @@ extension PriorityLevelExtension on PriorityLevel {
 }
 
 class _DropDownButton extends StatelessWidget {
-  const _DropDownButton({super.key});
+  const _DropDownButton();
 
   @override
   Widget build(BuildContext context) {

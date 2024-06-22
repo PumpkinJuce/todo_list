@@ -9,30 +9,30 @@ class AppThemeData {
       secondary: AppColors.white,
     ),
     datePickerTheme: DatePickerThemeData(
-      dayStyle: const TextStyle(color: AppColors.blue),
+      dayStyle: const TextStyle(color: AppColors.purple),
       dayOverlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
-        return AppColors.blue;
+        return AppColors.purple;
       }),
       headerHeadlineStyle: const TextStyle(
-        color: AppColors.blue,
+        color: AppColors.purple,
       ),
-      todayBorder: const BorderSide(color: AppColors.blue),
+      todayBorder: const BorderSide(color: AppColors.purple),
       todayBackgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
-        return AppColors.blue.withOpacity(0.3);
+        return AppColors.purple.withOpacity(0.3);
       }),
-      rangeSelectionBackgroundColor: AppColors.blue.withOpacity(0.3),
-      weekdayStyle: const TextStyle(color: AppColors.blue),
-      headerBackgroundColor: AppColors.blue.withOpacity(0.1),
-      headerForegroundColor: AppColors.blue,
-      yearStyle: const TextStyle(color: AppColors.blue),
+      rangeSelectionBackgroundColor: AppColors.purple.withOpacity(0.3),
+      weekdayStyle: const TextStyle(color: AppColors.purple),
+      headerBackgroundColor: AppColors.purple.withOpacity(0.1),
+      headerForegroundColor: AppColors.purple,
+      yearStyle: const TextStyle(color: AppColors.purple),
     ),
     switchTheme: SwitchThemeData(
       trackColor:
           MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
         if (states.contains(MaterialState.selected)) {
-          return AppColors.blue;
+          return AppColors.purple;
         }
         return AppColors.lightOverlay;
       }),

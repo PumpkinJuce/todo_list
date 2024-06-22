@@ -10,7 +10,7 @@ extension PriorityLevelExtension on PriorityLevel {
       };
   Color get iconColor => switch (this) {
         PriorityLevel.low => AppColors.gray,
-        PriorityLevel.medium => AppColors.blue,
+        PriorityLevel.medium => AppColors.purple,
         PriorityLevel.heigh => AppColors.red,
       };
 }

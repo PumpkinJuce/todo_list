@@ -12,7 +12,6 @@ _$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       isDone: json['isDone'] as bool,
       priority: $enumDecode(_$PriorityLevelEnumMap, json['priority']),
-      description: json['description'] as String?,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
     );
@@ -23,7 +22,6 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'title': instance.title,
       'isDone': instance.isDone,
       'priority': _$PriorityLevelEnumMap[instance.priority]!,
-      'description': instance.description,
       'date': instance.date?.toIso8601String(),
     };
 

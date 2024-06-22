@@ -20,15 +20,18 @@ class DeadlineWidget extends StatelessWidget {
     bloc.add(NewTasPageChooseDateEvent(pickedDate));
   }
 
+  String? _deadlineDateFormatted(DateTime? deadlineDate) {
+    return deadlineDate == null
+        ? null
+        : DateFormat('yyyy-MM-dd').format(deadlineDate);
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
         builder: (context, state) {
-      final deadlineDate = state.deadlineDate;
-      final deadlineDateFormatted = deadlineDate == null
-          ? null
-          : DateFormat('yyyy-MM-dd').format(deadlineDate);
+      final deadlineDateFormatted = _deadlineDateFormatted(state.deadlineDate);
       final hasDeadline = state.deadlineDate != null;
 
       return DecoratedContainer(
@@ -49,8 +52,8 @@ class DeadlineWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 7),
                     child: Text(
                       deadlineDateFormatted,
-                      style:
-                          textTheme.bodyMedium?.copyWith(color: AppColors.blue),
+                      style: textTheme.bodyMedium
+                          ?.copyWith(color: AppColors.purple),
                     ),
                   ),
               ],

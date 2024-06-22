@@ -46,7 +46,6 @@ class TodosRepository {
         title: 'Task $index',
         isDone: index % 2 == 0,
         priority: PriorityLevel.values[index % PriorityLevel.values.length],
-        description: index % 3 == 0 ? 'Description for Task $index' : null,
         date: DateTime.now().add(Duration(days: index)),
       );
     });

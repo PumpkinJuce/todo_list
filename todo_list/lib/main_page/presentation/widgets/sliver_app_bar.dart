@@ -22,62 +22,57 @@ class MyHeaderDelegate extends SliverPersistentHeaderDelegate {
     final textTheme = theme.textTheme;
     final progress = shrinkOffset / maxExtent;
 
-    return ColoredBox(
+    return Container(
       color: theme.scaffoldBackgroundColor,
+      padding: _padding,
       child: Stack(
         fit: StackFit.expand,
         children: [
           AnimatedOpacity(
             duration: Duration.zero,
             opacity: progress,
-            child: Padding(
-              padding: _padding,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Мои дела',
-                    style: textTheme.displayMedium,
-                  ),
-                  InkWell(
-                    onTap: onIconTap,
-                    child: Icon(icon, color: AppColors.blue),
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Мои дела',
+                  style: textTheme.displayMedium,
+                ),
+                InkWell(
+                  onTap: onIconTap,
+                  child: Icon(icon, color: AppColors.purple),
+                ),
+              ],
             ),
           ),
           AnimatedOpacity(
             duration: Duration.zero,
             opacity: 1 - progress,
-            child: Padding(
-              padding: _padding,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Мои дела',
-                    style: textTheme.displayLarge,
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Выполнено - $doneTasksCount',
-                        style: textTheme.bodyLarge
-                            ?.copyWith(color: AppColors.labelTertiary),
-                      ),
-                      InkWell(
-                        onTap: onIconTap,
-                        child: Icon(icon, color: AppColors.blue),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Мои дела',
+                  style: textTheme.displayLarge,
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Выполнено - $doneTasksCount',
+                      style: textTheme.bodyLarge
+                          ?.copyWith(color: AppColors.labelTertiary),
+                    ),
+                    InkWell(
+                      onTap: onIconTap,
+                      child: Icon(icon, color: AppColors.purple),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
@@ -95,18 +90,3 @@ class MyHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       true;
 }
-
-// class _ExpandedTitle extends InheritedWidget {
-//   const _ExpandedTitle({super.key, required this.child}) : super(child: child);
-
-//   final Widget child;
-
-//   static _ExpandedTitle? of(BuildContext context) {
-//     return context.dependOnInheritedWidgetOfExactType<_ExpandedTitle>();
-//   }
-
-//   @override
-//   bool updateShouldNotify(_ExpandedTitle oldWidget) {
-//     return true;
-//   }
-// }

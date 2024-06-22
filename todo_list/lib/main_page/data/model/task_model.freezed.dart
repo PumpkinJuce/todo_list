@@ -24,7 +24,6 @@ mixin _$TaskModel {
   String get title => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
   PriorityLevel get priority => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +42,6 @@ abstract class $TaskModelCopyWith<$Res> {
       String title,
       bool isDone,
       PriorityLevel priority,
-      String? description,
       DateTime? date});
 }
 
@@ -64,7 +62,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? title = null,
     Object? isDone = null,
     Object? priority = null,
-    Object? description = freezed,
     Object? date = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,10 +81,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as PriorityLevel,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -109,7 +102,6 @@ abstract class _$$TaskModelImplCopyWith<$Res>
       String title,
       bool isDone,
       PriorityLevel priority,
-      String? description,
       DateTime? date});
 }
 
@@ -128,7 +120,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? isDone = null,
     Object? priority = null,
-    Object? description = freezed,
     Object? date = freezed,
   }) {
     return _then(_$TaskModelImpl(
@@ -148,10 +139,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as PriorityLevel,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -168,7 +155,6 @@ class _$TaskModelImpl implements _TaskModel {
       required this.title,
       required this.isDone,
       required this.priority,
-      this.description,
       this.date});
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -183,13 +169,11 @@ class _$TaskModelImpl implements _TaskModel {
   @override
   final PriorityLevel priority;
   @override
-  final String? description;
-  @override
   final DateTime? date;
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, title: $title, isDone: $isDone, priority: $priority, description: $description, date: $date)';
+    return 'TaskModel(id: $id, title: $title, isDone: $isDone, priority: $priority, date: $date)';
   }
 
   @override
@@ -202,15 +186,13 @@ class _$TaskModelImpl implements _TaskModel {
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, isDone, priority, description, date);
+      Object.hash(runtimeType, id, title, isDone, priority, date);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +214,6 @@ abstract class _TaskModel implements TaskModel {
       required final String title,
       required final bool isDone,
       required final PriorityLevel priority,
-      final String? description,
       final DateTime? date}) = _$TaskModelImpl;
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
@@ -246,8 +227,6 @@ abstract class _TaskModel implements TaskModel {
   bool get isDone;
   @override
   PriorityLevel get priority;
-  @override
-  String? get description;
   @override
   DateTime? get date;
   @override
