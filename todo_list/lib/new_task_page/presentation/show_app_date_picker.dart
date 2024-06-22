@@ -9,6 +9,7 @@ Future<DateTime?> showAppDatePicker(BuildContext context) async {
     firstDate: DateTime(
       now.year,
       now.month,
+      now.day,
     ),
     lastDate: DateTime(2100),
     builder: (context, child) {

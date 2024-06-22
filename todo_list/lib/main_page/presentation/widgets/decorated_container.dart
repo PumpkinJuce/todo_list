@@ -4,10 +4,14 @@ class DecoratedContainer extends StatelessWidget {
   const DecoratedContainer({
     required this.child,
     this.margin,
+    this.width,
+    this.padding,
     super.key,
   });
   final Widget child;
   final EdgeInsets? margin;
+  final EdgeInsets? padding;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +20,8 @@ class DecoratedContainer extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary,
       ),
       margin: margin,
-      padding: const EdgeInsets.all(8),
+      width: width,
+      padding: padding ?? const EdgeInsets.all(8),
       child: child,
     );
   }

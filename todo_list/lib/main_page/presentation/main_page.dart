@@ -38,7 +38,9 @@ class _MainPageState extends State<MainPage> {
                 pinned: true,
                 floating: true,
                 delegate: MyHeaderDelegate(
-                  icon: state.isFiltered ? Icons.visibility_off : Icons.remove_red_eye,
+                  icon: state.isFiltered
+                      ? Icons.visibility_off
+                      : Icons.remove_red_eye,
                   doneTasksCount: state.doneTasksCount,
                   onIconTap: () => bloc.add(const TodosSwitchFilterEvent()),
                 ),
@@ -51,9 +53,11 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: TodoListItem(
                       task: task,
-                      onDone: () => bloc.add(TodosChangeStatusEvent(task, true)),
+                      onDone: () =>
+                          bloc.add(TodosChangeStatusEvent(task, true)),
                       onDelete: () => bloc.add(TodosDeleteEvent(task.id)),
-                      onCheckBoxChange: (value) => bloc.add(TodosChangeStatusEvent(task, value ?? false)),
+                      onCheckBoxChange: (value) => bloc
+                          .add(TodosChangeStatusEvent(task, value ?? false)),
                     ),
                   );
                 },

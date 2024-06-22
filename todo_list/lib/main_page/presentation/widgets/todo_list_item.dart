@@ -97,7 +97,10 @@ class _DateText extends StatelessWidget {
       child: Text(
         formattedDate,
         maxLines: 1,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.labelTertiary),
+        style: Theme.of(context)
+            .textTheme
+            .bodyMedium
+            ?.copyWith(color: AppColors.labelTertiary),
       ),
     );
   }

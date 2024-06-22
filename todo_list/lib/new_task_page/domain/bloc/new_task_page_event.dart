@@ -20,3 +20,12 @@ class NewTasPageChooseDateEvent extends NewTaskPageEvent {
   @override
   List<Object?> get props => [date];
 }
+
+class NewTasPageChoosePriorityLevelEvent extends NewTaskPageEvent {
+  const NewTasPageChoosePriorityLevelEvent(this.priorityLevel);
+
+  final PriorityLevel priorityLevel;
+
+  @override
+  List<Object?> get props => [priorityLevel];
+}

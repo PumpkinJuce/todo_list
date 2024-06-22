@@ -12,10 +12,12 @@ class MyHeaderDelegate extends SliverPersistentHeaderDelegate {
   final int doneTasksCount;
   final void Function() onIconTap;
 
-  EdgeInsets get _padding => const EdgeInsets.only(left: 40, right: 12, bottom: 12);
+  EdgeInsets get _padding =>
+      const EdgeInsets.only(left: 40, right: 12, bottom: 12);
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final progress = shrinkOffset / maxExtent;
@@ -65,7 +67,8 @@ class MyHeaderDelegate extends SliverPersistentHeaderDelegate {
                     children: [
                       Text(
                         'Выполнено - $doneTasksCount',
-                        style: textTheme.bodyLarge?.copyWith(color: AppColors.labelTertiary),
+                        style: textTheme.bodyLarge
+                            ?.copyWith(color: AppColors.labelTertiary),
                       ),
                       InkWell(
                         onTap: onIconTap,
@@ -89,9 +92,9 @@ class MyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 110;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
 }
-
 
 // class _ExpandedTitle extends InheritedWidget {
 //   const _ExpandedTitle({super.key, required this.child}) : super(child: child);

@@ -6,31 +6,31 @@ class AppThemeData {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.backPrimary,
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      // primary: Colors.blue,
       secondary: AppColors.white,
     ),
     datePickerTheme: DatePickerThemeData(
-      dayStyle: const TextStyle(color: AppColors.blue), // Цвет текста для всех дней
-      dayOverlayColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-        return AppColors.blue; // Фон для сегодняшнего дня
+      dayStyle: const TextStyle(color: AppColors.blue),
+      dayOverlayColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        return AppColors.blue;
       }),
       headerHeadlineStyle: const TextStyle(
         color: AppColors.blue,
       ),
-      todayBorder: const BorderSide(color: AppColors.blue), // Граница для сегодняшнего дня
-      todayBackgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-        return AppColors.blue.withOpacity(0.3); // Фон для сегодняшнего дня
+      todayBorder: const BorderSide(color: AppColors.blue),
+      todayBackgroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        return AppColors.blue.withOpacity(0.3);
       }),
-
-      rangeSelectionBackgroundColor: AppColors.blue.withOpacity(0.3), // Фон для диапазона выбора дней
-      weekdayStyle: const TextStyle(color: AppColors.blue), // Цвет текста для будних дней
-
-      headerBackgroundColor: AppColors.blue.withOpacity(0.1), // Фон заголовка
-      headerForegroundColor: AppColors.blue, // Цвет текста заголовка
-      yearStyle: const TextStyle(color: AppColors.blue), // Цвет текста для года
+      rangeSelectionBackgroundColor: AppColors.blue.withOpacity(0.3),
+      weekdayStyle: const TextStyle(color: AppColors.blue),
+      headerBackgroundColor: AppColors.blue.withOpacity(0.1),
+      headerForegroundColor: AppColors.blue,
+      yearStyle: const TextStyle(color: AppColors.blue),
     ),
     switchTheme: SwitchThemeData(
-      trackColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+      trackColor:
+          MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
         if (states.contains(MaterialState.selected)) {
           return AppColors.blue;
         }

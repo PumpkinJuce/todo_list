@@ -29,13 +29,18 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   void _updateListEvent(TodosUpdateListEvent event, Emitter<TodosState> emit) {
     final isFiltered = event.isFiltered ?? state.isFiltered;
-    final result = isFiltered ? event.tasks.where((element) => !element.isDone).toList() : event.tasks;
-    final doneTasksCount = event.tasks.where((element) => element.isDone).length;
+    final result = isFiltered
+        ? event.tasks.where((element) => !element.isDone).toList()
+        : event.tasks;
+    final doneTasksCount =
+        event.tasks.where((element) => element.isDone).length;
     emit(TodosInitialState(result, isFiltered, doneTasksCount));
   }
 
-  void _switchFilterEvent(TodosSwitchFilterEvent event, Emitter<TodosState> emit) {
-    add(TodosUpdateListEvent(repository.currentList, isFiltered: !state.isFiltered));
+  void _switchFilterEvent(
+      TodosSwitchFilterEvent event, Emitter<TodosState> emit) {
+    add(TodosUpdateListEvent(repository.currentList,
+        isFiltered: !state.isFiltered));
   }
 
   void _getEvent(TodosGetEvent event, Emitter<TodosState> emit) {

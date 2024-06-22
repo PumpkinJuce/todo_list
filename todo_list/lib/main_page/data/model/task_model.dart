@@ -16,5 +16,6 @@ class TaskModel with _$TaskModel {
     DateTime? date,
   }) = _TaskModel;
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
+  factory TaskModel.fromJson(Map<String, dynamic> json) =>
+      _$TaskModelFromJson(json);
 }

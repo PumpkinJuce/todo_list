@@ -19,10 +19,9 @@ class TodosRepository {
     final currentTasks = await getAllTasks();
     currentTasks.add(task);
     _todosStream.add(currentTasks);
-    // _todosStream.add(List.from(currentTasks));
   }
 
-  FutureOr<void> deleteTaskById(String id) async{
+  FutureOr<void> deleteTaskById(String id) async {
     final currentTasks = await getAllTasks();
     currentTasks.removeWhere((task) => task.id == id);
     _todosStream.add(currentTasks);
@@ -32,9 +31,10 @@ class TodosRepository {
     return [..._todosStream.value];
   }
 
-  FutureOr<void> updateTask(TaskModel task) async{
+  FutureOr<void> updateTask(TaskModel task) async {
     final currentTasks = await getAllTasks();
-    final taskIndex = currentTasks.indexWhere((element) => element.id == task.id);
+    final taskIndex =
+        currentTasks.indexWhere((element) => element.id == task.id);
     currentTasks[taskIndex] = task;
     _todosStream.add(currentTasks);
   }
