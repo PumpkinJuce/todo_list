@@ -25,7 +25,7 @@ Todo List - приложение для управления задачами с
 
 Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/w6D3kMQrZCxjMw)
 
-![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
+![Image alt](https://github.com/{username}/{repository}/Screenshot_20240622_235930_com.example.todo_list.jpg)
 
 
 
