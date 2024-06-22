@@ -8,7 +8,9 @@ part 'new_task_page_state.dart';
 class NewTaskPageBloc extends Bloc<NewTaskPageEvent, NewTaskPageState> {
   NewTaskPageBloc()
       : super(const NewTaskPageInitialState(
-            isButtonActive: false, priorityLevel: PriorityLevel.low)) {
+          isButtonActive: false,
+          priorityLevel: PriorityLevel.none,
+        )) {
     on<NewTasPageActivateButtonEvent>(_activateButtonEvent);
     on<NewTasPageChooseDateEvent>(_chooseDateEvent);
     on<NewTasPageChoosePriorityLevelEvent>(_choosePriorityLevelEvent);

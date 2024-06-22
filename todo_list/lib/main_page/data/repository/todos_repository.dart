@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:todo_list/app_loger/log.dart';
 import 'package:todo_list/main_page/data/model/task_model.dart';
+
+const _logTag = '[TodosRepository]';
 
 class TodosRepository {
   TodosRepository() {
@@ -19,12 +22,14 @@ class TodosRepository {
     final currentTasks = await getAllTasks();
     currentTasks.add(task);
     _todosStream.add(currentTasks);
+    Log.info('$_logTag: add item with id: ${task.id}');
   }
 
   FutureOr<void> deleteTaskById(String id) async {
     final currentTasks = await getAllTasks();
     currentTasks.removeWhere((task) => task.id == id);
     _todosStream.add(currentTasks);
+    Log.info('$_logTag: delete item with id: $id');
   }
 
   FutureOr<List<TaskModel>> getAllTasks() {
@@ -37,10 +42,11 @@ class TodosRepository {
         currentTasks.indexWhere((element) => element.id == task.id);
     currentTasks[taskIndex] = task;
     _todosStream.add(currentTasks);
+    Log.info('$_logTag: update item with id: ${task.id}');
   }
 
   void _mockData() {
-    final list = List.generate(15, (index) {
+    final list = List.generate(10, (index) {
       return TaskModel(
         id: UniqueKey().toString(),
         title: 'Task $index',

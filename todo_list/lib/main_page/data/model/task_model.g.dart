@@ -26,7 +26,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
     };
 
 const _$PriorityLevelEnumMap = {
-  PriorityLevel.low: 'low',
+  PriorityLevel.none: 'none',
   PriorityLevel.medium: 'medium',
   PriorityLevel.heigh: 'heigh',
 };

@@ -32,6 +32,19 @@ class TodoListItem extends StatelessWidget {
     return textTheme.bodyLarge;
   }
 
+  MaterialStateProperty<Color?>? _checkBoxFillColor() {
+    if (task.isDeadlinePassed) {
+      return MaterialStateProperty.resolveWith((states) {
+        if (!states.contains(MaterialState.selected)) {
+          return AppColors.red.withOpacity(0.2);
+        }
+        return AppColors.green;
+      });
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SlidableItemWrapper(
@@ -41,7 +54,6 @@ class TodoListItem extends StatelessWidget {
       child: InkWell(
         onTap: () => AppRouter.of(context).pushNamed('/new-task', task),
         child: DecoratedContainer(
-          margin: const EdgeInsets.only(top: 7),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -50,6 +62,10 @@ class TodoListItem extends StatelessWidget {
                 checkColor: Colors.white,
                 value: task.isDone,
                 onChanged: onCheckBoxChange,
+                side: task.isDeadlinePassed
+                    ? const BorderSide(color: AppColors.red)
+                    : null,
+                fillColor: _checkBoxFillColor(),
               ),
               Expanded(
                 child: Column(

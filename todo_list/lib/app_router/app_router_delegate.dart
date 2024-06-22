@@ -43,7 +43,6 @@ class AppRouterDelegate extends RouterDelegate<String> with ChangeNotifier {
         if (_stackPages.isEmpty) {
           return false;
         }
-        _stackPages.removeLast();
 
         notifyListeners();
         return true;
@@ -53,7 +52,7 @@ class AppRouterDelegate extends RouterDelegate<String> with ChangeNotifier {
 
   @override
   Future<bool> popRoute() async {
-    if (_stackPages.isNotEmpty) {
+    if (_stackPages.length > 1) {
       _stackPages.removeLast();
       notifyListeners();
       return true;

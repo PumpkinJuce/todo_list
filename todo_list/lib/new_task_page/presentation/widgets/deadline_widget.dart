@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
 import 'package:todo_list/main_page/presentation/widgets/decorated_container.dart';
 import 'package:todo_list/new_task_page/domain/bloc/new_task_page_bloc.dart';
-import 'package:todo_list/new_task_page/presentation/show_app_date_picker.dart';
+import 'package:todo_list/new_task_page/presentation/widgets/show_app_date_picker.dart';
 
 class DeadlineWidget extends StatelessWidget {
   const DeadlineWidget({super.key});

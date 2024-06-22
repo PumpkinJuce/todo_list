@@ -32,7 +32,7 @@ class PriorityWidget extends StatelessWidget {
 
 extension PriorityLevelExtension on PriorityLevel {
   String get title => switch (this) {
-        PriorityLevel.low => 'Нет',
+        PriorityLevel.none => 'Нет',
         PriorityLevel.medium => 'Средний',
         PriorityLevel.heigh => 'Высокий',
       };
@@ -67,7 +67,7 @@ class _DropDownButton extends StatelessWidget {
           );
         }).toList(),
         onChanged: (value) => context.read<NewTaskPageBloc>().add(
-            NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.low)),
+            NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.none)),
         value: state.priorityLevel,
         style: textTheme.bodyMedium?.copyWith(
           color: AppColors.labelTertiary,

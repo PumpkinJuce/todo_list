@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/app_router/app_router.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
 import 'package:todo_list/main_page/domain/bloc/todos_bloc.dart';
-import 'package:todo_list/main_page/presentation/widgets/sliver_app_bar.dart';
+import 'package:todo_list/main_page/presentation/widgets/main_page_header.dart';
 import 'package:todo_list/main_page/presentation/widgets/todo_list_item.dart';
 
 class MainPage extends StatelessWidget {
@@ -32,7 +32,7 @@ class MainPage extends StatelessWidget {
               SliverPersistentHeader(
                 pinned: true,
                 floating: true,
-                delegate: MyHeaderDelegate(
+                delegate: MainPageHeader(
                   icon: state.isFiltered
                       ? Icons.visibility_off
                       : Icons.remove_red_eye,
@@ -48,7 +48,8 @@ class MainPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        padding:
+                            const EdgeInsets.only(left: 12, right: 12, top: 7),
                         child: TodoListItem(
                           task: task,
                           onDone: () =>
@@ -81,7 +82,7 @@ class _AddNewTaskButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 50),
       child: InkWell(
         onTap: () => AppRouter.of(context).pushNamed('/new-task'),
         child: Text(

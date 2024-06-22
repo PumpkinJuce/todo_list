@@ -4,12 +4,12 @@ import 'package:todo_list/main_page/data/model/task_model.dart';
 
 extension PriorityLevelExtension on PriorityLevel {
   int get iconCount => switch (this) {
-        PriorityLevel.low => 0,
+        PriorityLevel.none => 0,
         PriorityLevel.medium => 2,
         PriorityLevel.heigh => 3,
       };
   Color get iconColor => switch (this) {
-        PriorityLevel.low => AppColors.gray,
+        PriorityLevel.none => AppColors.gray,
         PriorityLevel.medium => AppColors.purple,
         PriorityLevel.heigh => AppColors.red,
       };
