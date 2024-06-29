@@ -30,3 +30,4 @@ Todo List - приложение для управления задачами с
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240623_000003_com.example.todo_list.jpg)
 
 
+
