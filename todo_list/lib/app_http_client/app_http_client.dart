@@ -9,15 +9,13 @@ class AppHttpClient with DioMixin implements Dio {
   AppHttpClient() {
     options = _baseOptions;
 
-    interceptors.add(AuthInterceptor('Valimar'));
+    interceptors.add(AuthInterceptor(_token));
     interceptors.add(LoggingInterceptor());
 
     httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
-        final HttpClient client =
-            HttpClient(context: SecurityContext(withTrustedRoots: false));
-        client.badCertificateCallback =
-            ((X509Certificate cert, String host, int port) => true);
+        final HttpClient client = HttpClient(context: SecurityContext(withTrustedRoots: false));
+        client.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
         return client;
       },
     );
@@ -37,4 +35,6 @@ class AppHttpClient with DioMixin implements Dio {
       },
     );
   }
+
+  static const String _token = 'Valimar';
 }
