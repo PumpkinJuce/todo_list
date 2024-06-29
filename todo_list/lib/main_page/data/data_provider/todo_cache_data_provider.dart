@@ -18,7 +18,8 @@ class TodoCacheDataProvider {
 
   List<TaskModel> getList() {
     try {
-      final list = (_appCache.getData(_table, _listKey) ?? []).cast<Map<String, dynamic>>();
+      final list = (_appCache.getData(_table, _listKey) ?? [])
+          .cast<Map<String, dynamic>>();
       final result = (list as List).map((e) => TaskModel.fromJson(e)).toList();
       return result;
     } catch (e) {
@@ -29,7 +30,8 @@ class TodoCacheDataProvider {
 
   Future<void> saveTaskList(List<TaskModel> list) async {
     try {
-      await _appCache.putData(_table, _listKey, list.map((e) => e.toJson()).toList());
+      await _appCache.putData(
+          _table, _listKey, list.map((e) => e.toJson()).toList());
     } catch (e) {
       Log.error('$_logTag: save error - $e');
     }
@@ -69,7 +71,8 @@ class TodoCacheDataProvider {
     }
   }
 
-  StreamSubscription<List<TaskModel>> listenToBox(void Function(List<TaskModel>) onEvent) {
+  StreamSubscription<List<TaskModel>> listenToBox(
+      void Function(List<TaskModel>) onEvent) {
     return _appCache.listen(_table, _listKey).asyncMap((event) async {
       final list = (event.value as List).cast<Map<String, dynamic>>();
       final tasks = list.map((e) => TaskModel.fromJson(e)).toList();

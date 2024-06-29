@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:rxdart/rxdart.dart';
 import 'package:todo_list/app_loger/log.dart';
 import 'package:todo_list/main_page/data/data_provider/server_response.dart';
@@ -56,18 +55,22 @@ class TodosRepository {
     final response = await _todoDataProvider.getList();
 
     _checkErrorAndSetRevision(response);
-
-    if (response.isSuccess) {
-      _cacheDataProvider.saveTaskList(response.data ?? []);
+    final data = response.data;
+    if (response.isSuccess && data != null) {
+      _cacheDataProvider.saveTaskList(data);
     }
   }
 
   Future<void> syncData() async {
-    final response = await _todoDataProvider.patchList(_cacheDataProvider.getList());
+    final response =
+        await _todoDataProvider.patchList(_cacheDataProvider.getList());
 
     _cacheDataProvider.setIsSync(true);
 
     _checkErrorAndSetRevision(response);
+    if (response.isSuccess) {
+      _cacheDataProvider.saveTaskList(response.data ?? []);
+    }
   }
 
   void getDataFromCache() {

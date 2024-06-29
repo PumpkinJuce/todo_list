@@ -14,14 +14,15 @@ class AppHttpClient with DioMixin implements Dio {
 
     httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
-        final HttpClient client = HttpClient(context: SecurityContext(withTrustedRoots: false));
-        client.badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+        final HttpClient client =
+            HttpClient(context: SecurityContext(withTrustedRoots: false));
+        client.badCertificateCallback = ((_, __, ___) => true);
         return client;
       },
     );
   }
 
-  static const _baseUrl = 'https://beta.mrdekk.ru/todo';
+  static const _baseUrl = 'https://hive.mrdekk.ru/todo';
   static const _connectTimeout = Duration(seconds: 20);
   static const _receiveTimeout = Duration(seconds: 20);
 

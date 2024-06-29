@@ -60,6 +60,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       id: _getUiId(),
       title: event.title,
       isDone: false,
+      date: event.date,
       priority: event.priorityLevel,
       createdAt: nowUnixTimestamp,
       changedAt: nowUnixTimestamp,
@@ -79,6 +80,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       priority: event.priorityLevel ?? task.priority,
       changedAt: _nowInixTimeStamp(),
       isDone: event.isDone ?? task.isDone,
+      date: event.date,
     );
 
     repository.updateTask(updatedTask);
