@@ -21,9 +21,12 @@ Todo List - приложение для управления задачами с
 - Чекбокс задачи подсвечивается красным цветом, если дедлайн прошел, но задача не выполнена.
 - Выбор приоритета задачи: нет приоритета, средний, высокий.
 
+- Данные сохраняются в локальном хранилище
+- Данные хранятся на сервере
+
 ## Установка 
 
-Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/w6D3kMQrZCxjMw)
+Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/gjo67uMjBz9VrA)
 
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235930_com.example.todo_list.jpg)
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235947_com.example.todo_list.jpg)
