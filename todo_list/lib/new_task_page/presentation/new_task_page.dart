@@ -7,6 +7,7 @@ import 'package:todo_list/main_page/domain/bloc/todos_bloc.dart';
 import 'package:todo_list/new_task_page/domain/bloc/new_task_page_bloc.dart';
 import 'package:todo_list/new_task_page/presentation/widgets/deadline_widget.dart';
 import 'package:todo_list/new_task_page/presentation/widgets/priority_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewTaskPage extends StatefulWidget {
   const NewTaskPage({this.task, super.key});
@@ -39,6 +40,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final localization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         shadowColor: theme.scaffoldBackgroundColor,
@@ -68,8 +70,8 @@ class _NewTaskPageState extends State<NewTaskPage> {
                   controller: controller,
                   maxLines: 20,
                   minLines: 5,
-                  decoration: const InputDecoration(
-                    hintText: 'Введите новую задачу...',
+                  decoration: InputDecoration(
+                    hintText: '${localization.addNewTask}...',
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -112,28 +114,27 @@ class _SaveButton extends StatelessWidget {
     if (task != null) {
       bloc.add(
         TodosUpdateEvent(
-          task.copyWith(
-              date: state.deadlineDate,
-              priority: state.priorityLevel,
-              title: controller.text),
+          task: task,
+          date: state.deadlineDate,
+          priorityLevel: state.priorityLevel,
+          title: controller.text,
         ),
       );
     } else {
       bloc.add(
-        TodosAddEvent(TaskModel(
-          id: UniqueKey().toString(),
+        TodosAddEvent(
+          date: state.deadlineDate,
           title: controller.text,
-          isDone: false,
-          priority: state.priorityLevel,
-        )),
+          priorityLevel: state.priorityLevel,
+        ),
       );
     }
   }
 
   void _onSave(NewTaskPageState state, BuildContext context) {
     if (!isValid()) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Введите задачу'),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context)!.addTask),
       ));
       return;
     }
@@ -149,7 +150,7 @@ class _SaveButton extends StatelessWidget {
       return TextButton(
         onPressed: () => _onSave(state, context),
         child: Text(
-          'СОХРАНИТЬ',
+          AppLocalizations.of(context)!.save,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.purple,
                 fontWeight: FontWeight.w500,
@@ -195,7 +196,7 @@ class _DeleteButton extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Text(
-            'УДАЛИТЬ',
+            AppLocalizations.of(context)!.delete,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: deleteButtonColor(),
                   fontWeight: FontWeight.w500,

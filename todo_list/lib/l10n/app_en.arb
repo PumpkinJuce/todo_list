@@ -1,0 +1,25 @@
+{
+  "addTask" : "Add task",
+
+  "myTasks" : "My tasks",
+  
+  "done" : "done",
+
+  "priority" : "priority",
+
+  "addTask" : "Add task",
+
+  "addNewTask" : "Add new task",
+
+  "save" : "SAVE",
+
+  "delete" : "DELETE",
+  
+  "no" : "No",
+
+  "medium" : "Medium",
+
+  "heigh" : "Heigh",
+
+  "doBefore" : "Do before"
+}

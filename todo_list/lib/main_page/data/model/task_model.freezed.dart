@@ -21,10 +21,21 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TaskModel {
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'text')
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'done')
   bool get isDone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'importance')
   PriorityLevel get priority => throw _privateConstructorUsedError;
+  @UnixDateTimeConverter()
+  @JsonKey(name: 'deadline')
   DateTime? get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  int? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'changed_at')
+  int? get changedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_updated_by')
+  String? get deviceId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +50,13 @@ abstract class $TaskModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String title,
-      bool isDone,
-      PriorityLevel priority,
-      DateTime? date});
+      @JsonKey(name: 'text') String title,
+      @JsonKey(name: 'done') bool isDone,
+      @JsonKey(name: 'importance') PriorityLevel priority,
+      @UnixDateTimeConverter() @JsonKey(name: 'deadline') DateTime? date,
+      @JsonKey(name: 'created_at') int? createdAt,
+      @JsonKey(name: 'changed_at') int? changedAt,
+      @JsonKey(name: 'last_updated_by') String? deviceId});
 }
 
 /// @nodoc
@@ -63,6 +77,9 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? isDone = null,
     Object? priority = null,
     Object? date = freezed,
+    Object? createdAt = freezed,
+    Object? changedAt = freezed,
+    Object? deviceId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -85,6 +102,18 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      changedAt: freezed == changedAt
+          ? _value.changedAt
+          : changedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      deviceId: freezed == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -99,10 +128,13 @@ abstract class _$$TaskModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String title,
-      bool isDone,
-      PriorityLevel priority,
-      DateTime? date});
+      @JsonKey(name: 'text') String title,
+      @JsonKey(name: 'done') bool isDone,
+      @JsonKey(name: 'importance') PriorityLevel priority,
+      @UnixDateTimeConverter() @JsonKey(name: 'deadline') DateTime? date,
+      @JsonKey(name: 'created_at') int? createdAt,
+      @JsonKey(name: 'changed_at') int? changedAt,
+      @JsonKey(name: 'last_updated_by') String? deviceId});
 }
 
 /// @nodoc
@@ -121,6 +153,9 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? isDone = null,
     Object? priority = null,
     Object? date = freezed,
+    Object? createdAt = freezed,
+    Object? changedAt = freezed,
+    Object? deviceId = freezed,
   }) {
     return _then(_$TaskModelImpl(
       id: null == id
@@ -143,6 +178,18 @@ class __$$TaskModelImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      changedAt: freezed == changedAt
+          ? _value.changedAt
+          : changedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      deviceId: freezed == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -152,10 +199,13 @@ class __$$TaskModelImplCopyWithImpl<$Res>
 class _$TaskModelImpl extends _TaskModel {
   const _$TaskModelImpl(
       {required this.id,
-      required this.title,
-      required this.isDone,
-      required this.priority,
-      this.date})
+      @JsonKey(name: 'text') required this.title,
+      @JsonKey(name: 'done') required this.isDone,
+      @JsonKey(name: 'importance') required this.priority,
+      @UnixDateTimeConverter() @JsonKey(name: 'deadline') this.date,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'changed_at') this.changedAt,
+      @JsonKey(name: 'last_updated_by') this.deviceId})
       : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -164,17 +214,31 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   final String id;
   @override
+  @JsonKey(name: 'text')
   final String title;
   @override
+  @JsonKey(name: 'done')
   final bool isDone;
   @override
+  @JsonKey(name: 'importance')
   final PriorityLevel priority;
   @override
+  @UnixDateTimeConverter()
+  @JsonKey(name: 'deadline')
   final DateTime? date;
+  @override
+  @JsonKey(name: 'created_at')
+  final int? createdAt;
+  @override
+  @JsonKey(name: 'changed_at')
+  final int? changedAt;
+  @override
+  @JsonKey(name: 'last_updated_by')
+  final String? deviceId;
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, title: $title, isDone: $isDone, priority: $priority, date: $date)';
+    return 'TaskModel(id: $id, title: $title, isDone: $isDone, priority: $priority, date: $date, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId)';
   }
 
   @override
@@ -187,13 +251,19 @@ class _$TaskModelImpl extends _TaskModel {
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.changedAt, changedAt) ||
+                other.changedAt == changedAt) &&
+            (identical(other.deviceId, deviceId) ||
+                other.deviceId == deviceId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, isDone, priority, date);
+  int get hashCode => Object.hash(runtimeType, id, title, isDone, priority,
+      date, createdAt, changedAt, deviceId);
 
   @JsonKey(ignore: true)
   @override
@@ -212,10 +282,14 @@ class _$TaskModelImpl extends _TaskModel {
 abstract class _TaskModel extends TaskModel {
   const factory _TaskModel(
       {required final String id,
-      required final String title,
-      required final bool isDone,
-      required final PriorityLevel priority,
-      final DateTime? date}) = _$TaskModelImpl;
+      @JsonKey(name: 'text') required final String title,
+      @JsonKey(name: 'done') required final bool isDone,
+      @JsonKey(name: 'importance') required final PriorityLevel priority,
+      @UnixDateTimeConverter() @JsonKey(name: 'deadline') final DateTime? date,
+      @JsonKey(name: 'created_at') final int? createdAt,
+      @JsonKey(name: 'changed_at') final int? changedAt,
+      @JsonKey(name: 'last_updated_by')
+      final String? deviceId}) = _$TaskModelImpl;
   const _TaskModel._() : super._();
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
@@ -224,13 +298,27 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get id;
   @override
+  @JsonKey(name: 'text')
   String get title;
   @override
+  @JsonKey(name: 'done')
   bool get isDone;
   @override
+  @JsonKey(name: 'importance')
   PriorityLevel get priority;
   @override
+  @UnixDateTimeConverter()
+  @JsonKey(name: 'deadline')
   DateTime? get date;
+  @override
+  @JsonKey(name: 'created_at')
+  int? get createdAt;
+  @override
+  @JsonKey(name: 'changed_at')
+  int? get changedAt;
+  @override
+  @JsonKey(name: 'last_updated_by')
+  String? get deviceId;
   @override
   @JsonKey(ignore: true)
   _$$TaskModelImplCopyWith<_$TaskModelImpl> get copyWith =>

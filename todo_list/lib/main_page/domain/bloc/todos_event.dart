@@ -7,8 +7,8 @@ abstract class TodosEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class TodosGetEvent extends TodosEvent {
-  const TodosGetEvent(this.showAllTasks);
+class TodosFetchEvent extends TodosEvent {
+  const TodosFetchEvent(this.showAllTasks);
 
   final bool showAllTasks;
 
@@ -31,12 +31,18 @@ class TodosSwitchFilterEvent extends TodosEvent {
 }
 
 class TodosAddEvent extends TodosEvent {
-  const TodosAddEvent(this.task);
+  const TodosAddEvent({
+    required this.title,
+    required this.date,
+    required this.priorityLevel,
+  });
 
-  final TaskModel task;
+  final String title;
+  final DateTime? date;
+  final PriorityLevel priorityLevel;
 
   @override
-  List<Object?> get props => [task];
+  List<Object?> get props => [title, date, priorityLevel];
 }
 
 class TodosDeleteEvent extends TodosEvent {
@@ -49,12 +55,22 @@ class TodosDeleteEvent extends TodosEvent {
 }
 
 class TodosUpdateEvent extends TodosEvent {
-  const TodosUpdateEvent(this.task);
+  const TodosUpdateEvent({
+    required this.task,
+    this.date,
+    this.priorityLevel,
+    this.title,
+    this.isDone,
+  });
 
   final TaskModel task;
+  final String? title;
+  final DateTime? date;
+  final PriorityLevel? priorityLevel;
+  final bool? isDone;
 
   @override
-  List<Object?> get props => [task];
+  List<Object?> get props => [task, title, date, priorityLevel, isDone];
 }
 
 class TodosChangeStatusEvent extends TodosEvent {
