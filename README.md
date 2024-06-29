@@ -26,7 +26,7 @@ Todo List - приложение для управления задачами с
 
 ## Установка 
 
-Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/gjo67uMjBz9VrA)
+Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/UpvLg-vqzXyrqQ)
 
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235930_com.example.todo_list.jpg)
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235947_com.example.todo_list.jpg)
