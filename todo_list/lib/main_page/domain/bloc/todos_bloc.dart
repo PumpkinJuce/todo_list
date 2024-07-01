@@ -80,7 +80,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       priority: event.priorityLevel ?? task.priority,
       changedAt: _nowInixTimeStamp(),
       isDone: event.isDone ?? task.isDone,
-      date: event.date,
+      date: event.date ?? task.date,
     );
 
     repository.updateTask(updatedTask);
