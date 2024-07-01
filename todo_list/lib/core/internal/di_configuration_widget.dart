@@ -7,6 +7,7 @@ import 'package:todo_list/core/app_router/app_router_delegate.dart';
 import 'package:todo_list/feature/main_page/data/data_provider/todo_cache_data_provider.dart';
 import 'package:todo_list/feature/main_page/data/data_provider/todo_data_provider.dart';
 import 'package:todo_list/feature/main_page/data/repository/todos_repository.dart';
+import 'package:todo_list/feature/main_page/data/repository/todos_repository_impl.dart';
 class DIConfigurationWidget extends StatelessWidget {
   const DIConfigurationWidget({
     required this.builder,
@@ -28,7 +29,7 @@ class DIConfigurationWidget extends StatelessWidget {
           update: (_, appHttpClient, __) => TodoDataProvider(appHttpClient),
         ),
         ProxyProvider2<TodoDataProvider, TodoCacheDataProvider, TodosRepository>(
-          update: (_, todoDataProvider, todoCacheDataProvider, __) => TodosRepository(
+          update: (_, todoDataProvider, todoCacheDataProvider, __) => TodosRepositoryImpl(
             todoDataProvider,
             todoCacheDataProvider,
           ),
