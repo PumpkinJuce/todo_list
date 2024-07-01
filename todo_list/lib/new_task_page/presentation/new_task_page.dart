@@ -115,6 +115,7 @@ class _SaveButton extends StatelessWidget {
       bloc.add(
         TodosUpdateEvent(
           task: task,
+          hasDeadline: state.deadlineDate != null,
           date: state.deadlineDate,
           priorityLevel: state.priorityLevel,
           title: controller.text,

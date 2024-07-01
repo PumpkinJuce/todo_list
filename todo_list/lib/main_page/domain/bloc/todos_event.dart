@@ -57,6 +57,7 @@ class TodosDeleteEvent extends TodosEvent {
 class TodosUpdateEvent extends TodosEvent {
   const TodosUpdateEvent({
     required this.task,
+    required this.hasDeadline,
     this.date,
     this.priorityLevel,
     this.title,
@@ -66,11 +67,13 @@ class TodosUpdateEvent extends TodosEvent {
   final TaskModel task;
   final String? title;
   final DateTime? date;
+  final bool hasDeadline;
   final PriorityLevel? priorityLevel;
   final bool? isDone;
 
   @override
-  List<Object?> get props => [task, title, date, priorityLevel, isDone];
+  List<Object?> get props =>
+      [task, title, date, priorityLevel, isDone, hasDeadline];
 }
 
 class TodosChangeStatusEvent extends TodosEvent {
