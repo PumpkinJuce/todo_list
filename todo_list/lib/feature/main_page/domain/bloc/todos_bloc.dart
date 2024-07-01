@@ -68,12 +68,13 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   void _updateEvent(TodosUpdateEvent event, Emitter<TodosState> emit) {
     final task = event.task;
+    final date = event.hasDeadline ? (event.date ?? task.date) : null;
     final updatedTask = event.task.copyWith(
       title: event.title ?? task.title,
       priority: event.priorityLevel ?? task.priority,
       changedAt: _nowInixTimeStamp(),
       isDone: event.isDone ?? task.isDone,
-      date: event.date ?? task.date,
+      date: date,
     );
 
     repository.updateTask(updatedTask);
@@ -81,7 +82,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   void _changeStatus(TodosChangeStatusEvent event, Emitter<TodosState> emit) {
     final newTask = event.task.copyWith(isDone: event.isDone);
-    add(TodosUpdateEvent(task: newTask));
+    add(TodosUpdateEvent(task: newTask, hasDeadline: newTask.date != null));
   }
 
   _nowInixTimeStamp() {
