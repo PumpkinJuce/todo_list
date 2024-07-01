@@ -1,64 +1,112 @@
 import 'dart:async';
-
-import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:todo_list/app_loger/log.dart';
+import 'package:todo_list/main_page/data/data_provider/server_response.dart';
+import 'package:todo_list/main_page/data/data_provider/todo_cache_data_provider.dart';
+import 'package:todo_list/main_page/data/data_provider/todo_data_provider.dart';
 import 'package:todo_list/main_page/data/model/task_model.dart';
 
 const _logTag = '[TodosRepository]';
 
 class TodosRepository {
-  TodosRepository() {
-    _mockData();
+  TodosRepository(this._todoDataProvider, this._cacheDataProvider) {
+    _cacheListener = _cacheDataProvider.listenToBox((event) {
+      _todosStream.add(event);
+    });
   }
+
+  final TodoDataProvider _todoDataProvider;
+  final TodoCacheDataProvider _cacheDataProvider;
 
   final _todosStream = BehaviorSubject<List<TaskModel>>.seeded([]);
 
   Stream<List<TaskModel>> get todoListStream => _todosStream.stream;
 
+  StreamSubscription<List<TaskModel>>? _cacheListener;
+
   List<TaskModel> get currentList => _todosStream.value;
 
   FutureOr<void> addTask(TaskModel task) async {
-    final currentTasks = await getAllTasks();
-    currentTasks.add(task);
-    _todosStream.add(currentTasks);
-    Log.info('$_logTag: add item with id: ${task.id}');
+    _cacheDataProvider.addTask(task);
+
+    final response = await _todoDataProvider.addTask(task);
+    _checkErrorAndSetRevision(response);
   }
 
   FutureOr<void> deleteTaskById(String id) async {
-    final currentTasks = await getAllTasks();
-    currentTasks.removeWhere((task) => task.id == id);
-    _todosStream.add(currentTasks);
+    _cacheDataProvider.deleteTask(id);
+
+    final response = await _todoDataProvider.deleteTaskById(id);
+    _checkErrorAndSetRevision(response);
+
     Log.info('$_logTag: delete item with id: $id');
   }
 
-  FutureOr<List<TaskModel>> getAllTasks() {
-    return [..._todosStream.value];
-  }
-
   FutureOr<void> updateTask(TaskModel task) async {
-    final currentTasks = await getAllTasks();
-    final taskIndex =
-        currentTasks.indexWhere((element) => element.id == task.id);
-    currentTasks[taskIndex] = task;
-    _todosStream.add(currentTasks);
+    _cacheDataProvider.updateTask(task);
+
+    final response = await _todoDataProvider.updateTask(task);
+    _checkErrorAndSetRevision(response);
+
     Log.info('$_logTag: update item with id: ${task.id}');
   }
 
-  void _mockData() {
-    final list = List.generate(10, (index) {
-      return TaskModel(
-        id: UniqueKey().toString(),
-        title: 'Task $index',
-        isDone: index % 2 == 0,
-        priority: PriorityLevel.values[index % PriorityLevel.values.length],
-        date: DateTime.now().add(Duration(days: index)),
-      );
-    });
+  Future<void> fetchData() async {
+    final response = await _todoDataProvider.getList();
+
+    _checkErrorAndSetRevision(response);
+    final data = response.data;
+    if (response.isSuccess && data != null) {
+      _cacheDataProvider.saveTaskList(data);
+    }
+  }
+
+  Future<void> syncData() async {
+    final response =
+        await _todoDataProvider.patchList(_cacheDataProvider.getList());
+
+    _cacheDataProvider.setIsSync(true);
+
+    _checkErrorAndSetRevision(response);
+    if (response.isSuccess) {
+      _cacheDataProvider.saveTaskList(response.data ?? []);
+    }
+  }
+
+  void getDataFromCache() {
+    final list = _cacheDataProvider.getList();
     _todosStream.add(list);
+  }
+
+  Future<void> checkSyncDataAndFetchList() async {
+    final isSync = _cacheDataProvider.isSync();
+    final revision = _cacheDataProvider.getStoredRevision();
+
+    if (revision == null) {
+      fetchData();
+    } else {
+      getDataFromCache();
+
+      _todoDataProvider.setRevision(revision);
+
+      if (!isSync) {
+        syncData();
+      }
+    }
+  }
+
+  void _checkErrorAndSetRevision(ServerResponse response) {
+    if (response.isError) {
+      _cacheDataProvider.setIsSync(false);
+    }
+    final revision = response.revision;
+    if (revision != null) {
+      _cacheDataProvider.setRevision(revision);
+    }
   }
 
   void dispose() {
     _todosStream.close();
+    _cacheListener?.cancel();
   }
 }

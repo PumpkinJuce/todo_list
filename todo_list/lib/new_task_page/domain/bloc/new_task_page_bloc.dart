@@ -9,7 +9,7 @@ class NewTaskPageBloc extends Bloc<NewTaskPageEvent, NewTaskPageState> {
   NewTaskPageBloc()
       : super(const NewTaskPageInitialState(
           isButtonActive: false,
-          priorityLevel: PriorityLevel.none,
+          priorityLevel: PriorityLevel.low,
         )) {
     on<NewTasPageActivateButtonEvent>(_activateButtonEvent);
     on<NewTasPageChooseDateEvent>(_chooseDateEvent);
