@@ -52,7 +52,7 @@ class TodoListItem extends StatelessWidget {
       onDone: onDone,
       onDelete: onDelete,
       child: InkWell(
-        onTap: () => AppRouter.of(context).pushNamed('/new-task', task),
+        onTap: () => AppRouter.of(context).push('/task', task),
         child: DecoratedContainer(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

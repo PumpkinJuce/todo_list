@@ -21,5 +21,9 @@
 
   "heigh" : "Heigh",
 
-  "doBefore" : "Do before"
+  "doBefore" : "Do before",
+  
+  "errorRoute": "Such a page does not exist",
+
+  "goBackHome": "Go back home"
 }

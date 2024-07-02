@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/core/app_cache.dart/app_cache.dart';
 import 'package:todo_list/core/app_cache.dart/app_cache_hive_impl.dart';
 import 'package:todo_list/core/app_http_client/app_http_client.dart';
-import 'package:todo_list/core/app_router/app_router_delegate.dart';
 import 'package:todo_list/feature/main_page/data/data_provider/todo_cache_data_provider.dart';
 import 'package:todo_list/feature/main_page/data/data_provider/todo_data_provider.dart';
 import 'package:todo_list/feature/main_page/data/repository/todos_repository.dart';
 import 'package:todo_list/feature/main_page/data/repository/todos_repository_impl.dart';
+
 class DIConfigurationWidget extends StatelessWidget {
   const DIConfigurationWidget({
     required this.builder,
@@ -24,7 +24,6 @@ class DIConfigurationWidget extends StatelessWidget {
         ProxyProvider<AppCache, TodoCacheDataProvider>(
           update: (_, appCache, __) => TodoCacheDataProvider(appCache),
         ),
-        ChangeNotifierProvider<AppRouterDelegate>(create: (_) => AppRouterDelegate()),
         ProxyProvider<AppHttpClient, TodoDataProvider>(
           update: (_, appHttpClient, __) => TodoDataProvider(appHttpClient),
         ),

@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
 
         return Scaffold(
           floatingActionButton: FloatingActionButton(
-            onPressed: () => AppRouter.of(context).pushNamed('/new-task'),
+            onPressed: () => AppRouter.of(context).push('/task'),
             shape: const CircleBorder(),
             backgroundColor: AppColors.purple,
             child: const Icon(
@@ -85,7 +85,7 @@ class _AddNewTaskButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 50),
       child: InkWell(
-        onTap: () => AppRouter.of(context).pushNamed('/new-task'),
+        onTap: () => AppRouter.of(context).push('/task'),
         child: Text(
           AppLocalizations.of(context)!.addTask,
           style: Theme.of(context)

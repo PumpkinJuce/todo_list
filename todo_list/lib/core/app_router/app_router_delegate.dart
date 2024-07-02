@@ -1,72 +1,24 @@
-import 'package:flutter/material.dart';
-import 'package:todo_list/core/app_router/page_builder.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo_list/feature/error_screen/error_screen.dart';
+import 'package:todo_list/feature/main_page/data/model/task_model.dart';
+import 'package:todo_list/feature/main_page/presentation/main_page.dart';
+import 'package:todo_list/feature/new_task_page/presentation/new_task_page.dart';
 
-class AppRouterDelegate extends RouterDelegate<String> with ChangeNotifier {
-  AppRouterDelegate() {
-    setNewRoutePath('/main');
-  }
-  final _stackPages = <Page<dynamic>>[];
-
-  Future<dynamic> pushNamed(String path, [Object? arguments]) async {
-    final page = pageBuilder(path, arguments);
-    if (page != null) {
-      _stackPages.add(page);
-      notifyListeners();
-    }
-  }
-
-  void removePage(Page<dynamic> page) {
-    _stackPages.remove(page);
-    notifyListeners();
-  }
-
-  void pop() {
-    if (_stackPages.isNotEmpty) {
-      _stackPages.removeLast();
-      notifyListeners();
-    }
-  }
-
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Navigator(
-      key: _navigatorKey,
-      pages: [
-        ..._stackPages,
-      ],
-      onPopPage: (route, result) {
-        if (!route.didPop(result)) {
-          return false;
-        }
-        if (_stackPages.isEmpty) {
-          return false;
-        }
-
-        notifyListeners();
-        return true;
-      },
-    );
-  }
-
-  @override
-  Future<bool> popRoute() async {
-    if (_stackPages.length > 1) {
-      _stackPages.removeLast();
-      notifyListeners();
-      return true;
-    }
-    return false;
-  }
-
-  @override
-  Future<void> setNewRoutePath(String configuration) async {
-    _stackPages.clear();
-    final page = pageBuilder(configuration);
-    if (page != null) {
-      _stackPages.add(page);
-      notifyListeners();
-    }
-  }
+class AppRouterDelegate {
+  static final router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const MainPage(),
+      ),
+      GoRoute(
+        path: '/task',
+        builder: (context, state) {
+          final task = state.extra as TaskModel?;
+          return NewTaskPage(task: task);
+        },
+      ),
+    ],
+    errorBuilder: (context, state) => const ErrorScreen(),
+  );
 }

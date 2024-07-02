@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/core/app_router/app_router_delegate.dart';
+import 'package:go_router/go_router.dart';
 
-class AppRouter extends InheritedNotifier<AppRouterDelegate> {
+class AppRouter extends InheritedWidget {
+  final GoRouter router;
+
   const AppRouter({
     super.key,
-    required AppRouterDelegate super.notifier,
+    required this.router,
     required super.child,
   });
 
-  static AppRouterDelegate of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<AppRouter>()!.notifier!;
+  static AppRouter of(BuildContext context) {
+    final AppRouter? result = context.dependOnInheritedWidgetOfExactType<AppRouter>();
+    assert(result != null, 'No AppRouter found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(AppRouter oldWidget) => router != oldWidget.router;
+
+  void push(String route, [Object? extra]) {
+    router.push(route, extra: extra);
+  }
+
+  void pop() {
+    router.pop();
+  }
+
+  void home(){
+     router.push('/');
   }
 }
