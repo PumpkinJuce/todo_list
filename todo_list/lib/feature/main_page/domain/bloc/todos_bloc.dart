@@ -1,12 +1,9 @@
 import 'dart:async';
-
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/core/app_utils/app_utils.dart';
 import 'package:todo_list/feature/main_page/data/model/task_model.dart';
 import 'package:todo_list/feature/main_page/data/repository/todos_repository.dart';
-import 'package:uuid/uuid.dart';
-
 part 'todos_event.dart';
 part 'todos_state.dart';
 
@@ -47,10 +44,10 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Future<void> _addEvent(TodosAddEvent event, Emitter<TodosState> emit) async {
     final nowUnixTimestamp = _nowInixTimeStamp();
-    final deviceId = await _getDeviceId();
+    final deviceId = await DeviceInformationUtils.getDeviceId();
 
     final newTask = TaskModel(
-      id: _getUiId(),
+      id: RandomGenerator.getRandomUId(),
       title: event.title,
       isDone: false,
       date: event.date,
@@ -88,16 +85,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   _nowInixTimeStamp() {
     final now = DateTime.now();
     return now.millisecondsSinceEpoch ~/ 1000;
-  }
-
-  Future<String> _getDeviceId() async {
-    var deviceInfo = await DeviceInfoPlugin().deviceInfo;
-
-    return deviceInfo.data['id'].toString();
-  }
-
-  String _getUiId() {
-    return const Uuid().v4();
   }
 
   @override
