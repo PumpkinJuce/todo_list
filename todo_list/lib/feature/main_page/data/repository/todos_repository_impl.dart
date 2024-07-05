@@ -67,7 +67,8 @@ class TodosRepositoryImpl implements TodosRepository {
   }
 
   Future<void> syncData() async {
-    final response = await _todoDataProvider.patchList(_cacheDataProvider.getList());
+    final response =
+        await _todoDataProvider.patchList(_cacheDataProvider.getList());
 
     _cacheDataProvider.setIsSync(true);
 

@@ -8,6 +8,5 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   await Hive.openBox(CacheTables.todoList.name);
-
   runApp(AppConfiguration());
 }

@@ -28,17 +28,24 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   void _updateListEvent(TodosUpdateListEvent event, Emitter<TodosState> emit) {
     final isFiltered = event.isFiltered ?? state.isFiltered;
-    final result = isFiltered ? event.tasks.where((element) => !element.isDone).toList() : event.tasks;
-    final doneTasksCount = event.tasks.where((element) => element.isDone).length;
+    final result = isFiltered
+        ? event.tasks.where((element) => !element.isDone).toList()
+        : event.tasks;
+    final doneTasksCount =
+        event.tasks.where((element) => element.isDone).length;
     emit(TodosInitialState(result, isFiltered, doneTasksCount));
   }
 
-  void _switchFilterEvent(TodosSwitchFilterEvent event, Emitter<TodosState> emit) {
-    add(TodosUpdateListEvent(repository.currentList, isFiltered: !state.isFiltered));
+  void _switchFilterEvent(
+      TodosSwitchFilterEvent event, Emitter<TodosState> emit) {
+    add(TodosUpdateListEvent(repository.currentList,
+        isFiltered: !state.isFiltered));
   }
 
-  Future<void> _fetchEvent(TodosFetchEvent event, Emitter<TodosState> emit) async {
-    emit(TodosLoadingState(state.tasks, state.isFiltered, state.doneTasksCount));
+  Future<void> _fetchEvent(
+      TodosFetchEvent event, Emitter<TodosState> emit) async {
+    emit(
+        TodosLoadingState(state.tasks, state.isFiltered, state.doneTasksCount));
     await repository.checkSyncDataAndFetchList();
   }
 

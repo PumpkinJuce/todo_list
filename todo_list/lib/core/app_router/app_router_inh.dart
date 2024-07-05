@@ -11,7 +11,8 @@ class AppRouter extends InheritedWidget {
   });
 
   static AppRouter of(BuildContext context) {
-    final AppRouter? result = context.dependOnInheritedWidgetOfExactType<AppRouter>();
+    final AppRouter? result =
+        context.dependOnInheritedWidgetOfExactType<AppRouter>();
     assert(result != null, 'No AppRouter found in context');
     return result!;
   }
@@ -27,7 +28,7 @@ class AppRouter extends InheritedWidget {
     router.pop();
   }
 
-  void home(){
-     router.push('/');
+  void home() {
+    router.go('/');
   }
 }

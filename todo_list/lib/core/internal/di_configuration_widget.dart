@@ -27,8 +27,10 @@ class DIConfigurationWidget extends StatelessWidget {
         ProxyProvider<AppHttpClient, TodoDataProvider>(
           update: (_, appHttpClient, __) => TodoDataProvider(appHttpClient),
         ),
-        ProxyProvider2<TodoDataProvider, TodoCacheDataProvider, TodosRepository>(
-          update: (_, todoDataProvider, todoCacheDataProvider, __) => TodosRepositoryImpl(
+        ProxyProvider2<TodoDataProvider, TodoCacheDataProvider,
+            TodosRepository>(
+          update: (_, todoDataProvider, todoCacheDataProvider, __) =>
+              TodosRepositoryImpl(
             todoDataProvider,
             todoCacheDataProvider,
           ),

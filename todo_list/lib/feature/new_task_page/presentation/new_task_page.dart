@@ -10,8 +10,9 @@ import 'package:todo_list/feature/new_task_page/presentation/widgets/priority_wi
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewTaskPage extends StatefulWidget {
-  const NewTaskPage({this.task, super.key});
+  const NewTaskPage({this.task, this.taskId, super.key});
   final TaskModel? task;
+  final String? taskId;
 
   @override
   State<NewTaskPage> createState() => _NewTaskPageState();
@@ -30,6 +31,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
   void _setUpInitialData() {
     final task = widget.task;
+
     if (task != null) {
       controller.text = task.title;
       bloc.add(NewTasPageChooseDateEvent(task.date));

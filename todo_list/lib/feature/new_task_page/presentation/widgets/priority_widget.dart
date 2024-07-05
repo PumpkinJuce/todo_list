@@ -12,7 +12,8 @@ class PriorityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(builder: (context, state) {
+    return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
+        builder: (context, state) {
       return DecoratedContainer(
         width: MediaQuery.sizeOf(context).width,
         child: Row(
@@ -43,7 +44,8 @@ class _DropDownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(builder: (context, state) {
+    return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
+        builder: (context, state) {
       final textTheme = Theme.of(context).textTheme;
 
       return DropdownButton(
@@ -65,8 +67,8 @@ class _DropDownButton extends StatelessWidget {
             ),
           );
         }).toList(),
-        onChanged: (value) =>
-            context.read<NewTaskPageBloc>().add(NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.low)),
+        onChanged: (value) => context.read<NewTaskPageBloc>().add(
+            NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.low)),
         value: state.priorityLevel,
         style: textTheme.bodyMedium?.copyWith(
           color: AppColors.labelTertiary,
