@@ -10,6 +10,8 @@ abstract class TodosRepository {
 
   FutureOr<void> addTask(TaskModel task);
 
+  FutureOr<TaskModel?> getTaskById(String id, {bool checkFromCache = false});
+
   FutureOr<void> deleteTaskById(String id);
 
   FutureOr<void> updateTask(TaskModel task);

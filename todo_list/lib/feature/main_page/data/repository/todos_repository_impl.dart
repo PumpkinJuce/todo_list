@@ -116,4 +116,23 @@ class TodosRepositoryImpl implements TodosRepository {
     _todosStream.close();
     _cacheListener?.cancel();
   }
+
+  @override
+  FutureOr<TaskModel?> getTaskById(String id,
+      {bool checkFromCache = false}) async {
+    if (checkFromCache) {
+      final cachedTask = _cacheDataProvider.getTaskById(id);
+      if (cachedTask != null) {
+        return cachedTask;
+      }
+    }
+    final response = await _todoDataProvider.getTaskById(id);
+    _checkErrorAndSetRevision(response);
+
+    final data = response.data;
+    if (response.isSuccess && data != null) {
+      _cacheDataProvider.addTask(data);
+    }
+    return null;
+  }
 }

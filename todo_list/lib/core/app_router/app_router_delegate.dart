@@ -13,11 +13,17 @@ class AppRouterDelegate {
         builder: (context, state) => const MainPage(),
         routes: [
           GoRoute(
-            path: 'task/:id',
+            path: 'task',
             builder: (context, state) {
               final task = state.extra as TaskModel?;
+              return NewTaskPage(task: task);
+            },
+          ),
+          GoRoute(
+            path: 'task/:id',
+            builder: (context, state) {
               final id = state.pathParameters['id'];
-              return NewTaskPage(task: task, taskId: id);
+              return NewTaskPage(taskId: id);
             },
           ),
         ],

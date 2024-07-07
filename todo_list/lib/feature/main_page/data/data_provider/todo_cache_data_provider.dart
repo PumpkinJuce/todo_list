@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:collection/collection.dart';
 import 'package:todo_list/core/app_cache.dart/app_cache.dart';
 import 'package:todo_list/core/app_cache.dart/cache_table_names.dart';
 import 'package:todo_list/core/app_loger/log.dart';
@@ -68,6 +69,17 @@ class TodoCacheDataProvider {
       await saveTaskList(list);
     } catch (e) {
       Log.error('$_logTag: update task error - $e');
+    }
+  }
+
+  TaskModel? getTaskById(String id) {
+    try {
+      final list = getList();
+      final task = list.firstWhereOrNull((element) => element.id == id);
+      return task;
+    } catch (e) {
+      Log.error('$_logTag: getTaskById error - $e');
+      return null;
     }
   }
 

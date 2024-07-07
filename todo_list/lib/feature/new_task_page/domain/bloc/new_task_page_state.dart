@@ -14,10 +14,11 @@ abstract class NewTaskPageState extends Equatable {
   @override
   List<Object?> get props => [isButtonActive, deadlineDate, priorityLevel];
 
-  NewTaskPageState copyWith(
-      {bool? isButtonActive,
-      DateTime? deadlineDate,
-      PriorityLevel? priorityLevel});
+  NewTaskPageState copyWith({
+    bool? isButtonActive,
+    DateTime? deadlineDate,
+    PriorityLevel? priorityLevel,
+  });
 }
 
 class NewTaskPageInitialState extends NewTaskPageState {
@@ -28,14 +29,31 @@ class NewTaskPageInitialState extends NewTaskPageState {
   });
 
   @override
-  NewTaskPageInitialState copyWith(
-      {bool? isButtonActive,
-      DateTime? deadlineDate,
-      PriorityLevel? priorityLevel}) {
+  NewTaskPageInitialState copyWith({
+    bool? isButtonActive,
+    DateTime? deadlineDate,
+    PriorityLevel? priorityLevel,
+  }) {
     return NewTaskPageInitialState(
       isButtonActive: isButtonActive ?? this.isButtonActive,
       deadlineDate: deadlineDate ?? this.deadlineDate,
       priorityLevel: priorityLevel ?? this.priorityLevel,
     );
+  }
+}
+
+class NewTaskPageLoadingState extends NewTaskPageState {
+  const NewTaskPageLoadingState({
+    super.isButtonActive = false,
+    super.priorityLevel = PriorityLevel.basic,
+    super.deadlineDate,
+  });
+
+  @override
+  NewTaskPageLoadingState copyWith(
+      {bool? isButtonActive,
+      DateTime? deadlineDate,
+      PriorityLevel? priorityLevel}) {
+    return this;
   }
 }

@@ -29,3 +29,31 @@ class NewTasPageChoosePriorityLevelEvent extends NewTaskPageEvent {
   @override
   List<Object?> get props => [priorityLevel];
 }
+
+class NewTasPageSetUpInitialData extends NewTaskPageEvent {
+  const NewTasPageSetUpInitialData(this.task);
+
+  final TaskModel task;
+
+  @override
+  List<Object?> get props => [task];
+}
+
+class NewTasPageLoadTaskById extends NewTaskPageEvent {
+  const NewTasPageLoadTaskById(this.taskId);
+
+  final String taskId;
+
+  @override
+  List<Object?> get props => [taskId];
+}
+
+class NewTasPageInit extends NewTaskPageEvent {
+  const NewTasPageInit(this.task, this.taskId);
+
+  final TaskModel? task;
+  final String? taskId;
+
+  @override
+  List<Object?> get props => [taskId, taskId];
+}

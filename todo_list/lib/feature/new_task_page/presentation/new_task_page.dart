@@ -1,43 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/core/app_router/app_router.dart';
 import 'package:todo_list/core/app_ui_kit/app_ui_kit.dart';
 import 'package:todo_list/feature/main_page/data/model/task_model.dart';
+import 'package:todo_list/feature/main_page/data/repository/todos_repository.dart';
 import 'package:todo_list/feature/main_page/domain/bloc/todos_bloc.dart';
 import 'package:todo_list/feature/new_task_page/domain/bloc/new_task_page_bloc.dart';
 import 'package:todo_list/feature/new_task_page/presentation/widgets/deadline_widget.dart';
 import 'package:todo_list/feature/new_task_page/presentation/widgets/priority_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class NewTaskPage extends StatefulWidget {
+class NewTaskPage extends StatelessWidget {
   const NewTaskPage({this.task, this.taskId, super.key});
   final TaskModel? task;
   final String? taskId;
-
-  @override
-  State<NewTaskPage> createState() => _NewTaskPageState();
-}
-
-class _NewTaskPageState extends State<NewTaskPage> {
-  final controller = TextEditingController();
-
-  final bloc = NewTaskPageBloc();
-
-  @override
-  void initState() {
-    super.initState();
-    _setUpInitialData();
-  }
-
-  void _setUpInitialData() {
-    final task = widget.task;
-
-    if (task != null) {
-      controller.text = task.title;
-      bloc.add(NewTasPageChooseDateEvent(task.date));
-      bloc.add(NewTasPageChoosePriorityLevelEvent(task.priority));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,60 +36,71 @@ class _NewTaskPageState extends State<NewTaskPage> {
         centerTitle: false,
       ),
       body: BlocProvider(
-        create: (context) => bloc,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: controller,
-                  maxLines: 20,
-                  minLines: 5,
-                  decoration: InputDecoration(
-                    hintText: '${localization.addNewTask}...',
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const DeadlineWidget(),
-                const PriorityWidget(),
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _DeleteButton(widget.task),
-                    _SaveButton(controller: controller, task: widget.task),
-                  ],
-                ),
-                const SizedBox(height: 25),
-              ],
-            ),
+        create: (context) => NewTaskPageBloc(
+          Provider.of<TodosRepository>(context, listen: false),
+        )..add(
+            NewTasPageInit(task, taskId),
           ),
-        ),
+        child: BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
+            builder: (context, state) {
+          final bloc = context.read<NewTaskPageBloc>();
+
+          if (state is NewTaskPageLoadingState) {
+            return const Center(
+              child: CupertinoActivityIndicator(color: AppColors.purple),
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    controller: bloc.controller,
+                    maxLines: 20,
+                    minLines: 5,
+                    decoration: InputDecoration(
+                      hintText: '${localization.addNewTask}...',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const DeadlineWidget(),
+                  const PriorityWidget(),
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _DeleteButton(task),
+                      _SaveButton(task: task),
+                    ],
+                  ),
+                  const SizedBox(height: 25),
+                ],
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
 }
 
 class _SaveButton extends StatelessWidget {
-  const _SaveButton({
-    required this.controller,
-    required this.task,
-    super.key,
-  });
-  final TaskModel? task;
-  final TextEditingController controller;
+  const _SaveButton({required this.task});
 
-  bool isValid() {
-    return controller.text.trim().isNotEmpty;
+  final TaskModel? task;
+
+  bool isValid(BuildContext context) {
+    return context.read<NewTaskPageBloc>().controller.text.trim().isNotEmpty;
   }
 
   void _updateOrSaveTask(NewTaskPageState state, BuildContext context) {
     final bloc = context.read<TodosBloc>();
+    final pageBloc = context.read<NewTaskPageBloc>();
     final task = this.task;
     if (task != null) {
       bloc.add(
@@ -120,14 +109,14 @@ class _SaveButton extends StatelessWidget {
           hasDeadline: state.deadlineDate != null,
           date: state.deadlineDate,
           priorityLevel: state.priorityLevel,
-          title: controller.text,
+          title: pageBloc.controller.text,
         ),
       );
     } else {
       bloc.add(
         TodosAddEvent(
           date: state.deadlineDate,
-          title: controller.text,
+          title: pageBloc.controller.text,
           priorityLevel: state.priorityLevel,
         ),
       );
@@ -135,7 +124,7 @@ class _SaveButton extends StatelessWidget {
   }
 
   void _onSave(NewTaskPageState state, BuildContext context) {
-    if (!isValid()) {
+    if (!isValid(context)) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(AppLocalizations.of(context)!.addTask),
       ));
@@ -149,23 +138,24 @@ class _SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
-        builder: (context, state) {
-      return TextButton(
-        onPressed: () => _onSave(state, context),
-        child: Text(
-          AppLocalizations.of(context)!.save,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.purple,
-                fontWeight: FontWeight.w500,
-              ),
-        ),
-      );
-    });
+      builder: (context, state) {
+        return TextButton(
+          onPressed: () => _onSave(state, context),
+          child: Text(
+            AppLocalizations.of(context)!.save,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.purple,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+        );
+      },
+    );
   }
 }
 
 class _DeleteButton extends StatelessWidget {
-  const _DeleteButton(this.task, {super.key});
+  const _DeleteButton(this.task);
 
   final TaskModel? task;
 
