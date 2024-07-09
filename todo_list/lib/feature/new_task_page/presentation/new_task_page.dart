@@ -41,8 +41,7 @@ class NewTaskPage extends StatelessWidget {
         )..add(
             NewTasPageInit(task, taskId),
           ),
-        child: BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
-            builder: (context, state) {
+        child: BlocBuilder<NewTaskPageBloc, NewTaskPageState>(builder: (context, state) {
           final bloc = context.read<NewTaskPageBloc>();
 
           if (state is NewTaskPageLoadingState) {
@@ -140,6 +139,7 @@ class _SaveButton extends StatelessWidget {
     return BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
       builder: (context, state) {
         return TextButton(
+          key: const Key('save_button'),
           onPressed: () => _onSave(state, context),
           child: Text(
             AppLocalizations.of(context)!.save,
