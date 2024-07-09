@@ -19,7 +19,8 @@ import '../test/feature/main_page/data/data_provider/todo_cache_data_provider_te
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   late MockTodosRepositoryImpl todosRepository;
-  final BehaviorSubject<List<TaskModel>> todosStream = BehaviorSubject<List<TaskModel>>.seeded([]);
+  final BehaviorSubject<List<TaskModel>> todosStream =
+      BehaviorSubject<List<TaskModel>>.seeded([]);
   late TodosBloc todosBloc;
 
   setUp(() {
@@ -36,7 +37,8 @@ void main() {
     todosBloc = TodosBloc(todosRepository);
   });
 
-  testWidgets('Add task and see it in the list on MainPage', (widgetTester) async {
+  testWidgets('Add task and see it in the list on MainPage',
+      (widgetTester) async {
     await widgetTester.pumpWidget(
       mockDiConfigurationWidget(todosRepository, todosBloc),
     );
@@ -68,7 +70,8 @@ void main() {
     expect(find.text(taskText), findsOneWidget);
 
     final Finder priorityIndicatorFinder = find.byType(PriorityIndicator);
-    final PriorityIndicator indicator = widgetTester.widget<PriorityIndicator>(priorityIndicatorFinder);
+    final PriorityIndicator indicator =
+        widgetTester.widget<PriorityIndicator>(priorityIndicatorFinder);
     // Verify the task  PriorityIndicator widget
     expect(priorityIndicatorFinder, findsOneWidget);
 
@@ -77,7 +80,8 @@ void main() {
   });
 }
 
-Widget mockDiConfigurationWidget(MockTodosRepositoryImpl todosRepository, TodosBloc todosBloc) {
+Widget mockDiConfigurationWidget(
+    MockTodosRepositoryImpl todosRepository, TodosBloc todosBloc) {
   return MultiProvider(
     providers: [
       Provider<TodosRepository>(create: (_) => todosRepository),

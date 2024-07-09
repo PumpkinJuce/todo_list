@@ -33,7 +33,7 @@ class TodoDataProvider {
           .toList();
 
       return ServerResponse(data: list, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: getList - $e');
       return ServerResponse(error: e.toString());
     }
@@ -58,7 +58,7 @@ class TodoDataProvider {
           .toList();
 
       return ServerResponse(data: result, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: patchList - $e');
       return ServerResponse(error: e.toString());
     }
@@ -79,7 +79,7 @@ class TodoDataProvider {
       setRevision(response.data['revision']);
 
       return ServerResponse(data: newTask, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: addTask - $e');
       return ServerResponse(error: e.toString());
     }
@@ -101,7 +101,7 @@ class TodoDataProvider {
       setRevision(response.data['revision']);
 
       return ServerResponse(data: newTask, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: updateTask -$e');
       return ServerResponse(error: e.toString());
     }
@@ -119,7 +119,7 @@ class TodoDataProvider {
       setRevision(response.data['revision']);
 
       return ServerResponse(data: newTask, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: getTaskById - $e');
       return ServerResponse(error: e.toString());
     }
@@ -141,7 +141,7 @@ class TodoDataProvider {
       setRevision(response.data['revision']);
 
       return ServerResponse(data: newTask, revision: _revision);
-    } on DioException catch (e) {
+    } catch (e) {
       Log.error('$_tag: deleteTaskById - $e');
       return ServerResponse(error: e.toString());
     }

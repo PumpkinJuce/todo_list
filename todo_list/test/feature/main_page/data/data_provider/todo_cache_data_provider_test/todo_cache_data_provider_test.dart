@@ -17,13 +17,15 @@ void main() {
   setUp(() {
     mockAppCache = MockHiveAppCache();
     dataProvider = TodoCacheDataProvider(mockAppCache);
-    when(mockAppCache.putData(CacheTables.todoList, 'list', any)).thenAnswer((_) => Future.value());
+    when(mockAppCache.putData(CacheTables.todoList, 'list', any))
+        .thenAnswer((_) => Future.value());
   });
 
   group('getList', () {
     test('returns list of TaskModel', () async {
       final mockData = taskModelListMock(jsonFormat: true);
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       final result = dataProvider.getList();
 
@@ -32,7 +34,8 @@ void main() {
 
     test('returns list of 3 elements', () async {
       final mockData = taskModelListMock(jsonFormat: true);
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       final result = dataProvider.getList();
 
@@ -42,14 +45,22 @@ void main() {
 
   group('addTask', () {
     test('calls appCache.putData', () async {
-      const task = TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important);
+      const task = TaskModel(
+          id: '1',
+          title: 'Title1',
+          isDone: false,
+          priority: PriorityLevel.important);
       await dataProvider.addTask(task);
 
       verify(mockAppCache.putData(CacheTables.todoList, 'list', any)).called(1);
     });
 
     test('calls with data params', () async {
-      const task = TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important);
+      const task = TaskModel(
+          id: '1',
+          title: 'Title1',
+          isDone: false,
+          priority: PriorityLevel.important);
       await dataProvider.addTask(task);
       final expectedJson = [task.toJson()];
 
@@ -66,10 +77,21 @@ void main() {
   group('deleteTask', () {
     test('calls appCache.putData', () async {
       final mockData = [
-        const TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
-        const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+        const TaskModel(
+                id: '1',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson(),
+        const TaskModel(
+                id: '2',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson()
       ];
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       await dataProvider.deleteTask('1');
 
@@ -78,13 +100,29 @@ void main() {
 
     test('calls without deleted task', () async {
       final mockData = [
-        const TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
-        const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+        const TaskModel(
+                id: '1',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson(),
+        const TaskModel(
+                id: '2',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson()
       ];
       final expectedData = [
-        const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+        const TaskModel(
+                id: '2',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson()
       ];
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       await dataProvider.deleteTask('1');
 
@@ -100,17 +138,42 @@ void main() {
 
   test('updateTask calls appCache.putData with updated params', () async {
     final mockData = [
-      const TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
-      const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+      const TaskModel(
+              id: '1',
+              title: 'Title1',
+              isDone: false,
+              priority: PriorityLevel.important)
+          .toJson(),
+      const TaskModel(
+              id: '2',
+              title: 'Title1',
+              isDone: false,
+              priority: PriorityLevel.important)
+          .toJson()
     ];
     final expectedData = [
-      const TaskModel(id: '1', title: 'Title1', isDone: true, priority: PriorityLevel.basic).toJson(),
-      const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
+      const TaskModel(
+              id: '1',
+              title: 'Title1',
+              isDone: true,
+              priority: PriorityLevel.basic)
+          .toJson(),
+      const TaskModel(
+              id: '2',
+              title: 'Title1',
+              isDone: false,
+              priority: PriorityLevel.important)
+          .toJson(),
     ];
-    when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+    when(mockAppCache.getData(CacheTables.todoList, 'list'))
+        .thenReturn(mockData);
 
     await dataProvider.updateTask(
-      const TaskModel(id: '1', title: 'Title1', isDone: true, priority: PriorityLevel.basic),
+      const TaskModel(
+          id: '1',
+          title: 'Title1',
+          isDone: true,
+          priority: PriorityLevel.basic),
     );
 
     verify(
@@ -125,23 +188,49 @@ void main() {
   group('getTaskById', () {
     test('return TaskModel by id', () {
       final mockData = [
-        const TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
-        const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+        const TaskModel(
+                id: '1',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson(),
+        const TaskModel(
+                id: '2',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson()
       ];
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       final result = dataProvider.getTaskById('1');
 
-      const expectedModel = TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important);
+      const expectedModel = TaskModel(
+          id: '1',
+          title: 'Title1',
+          isDone: false,
+          priority: PriorityLevel.important);
       expect(result, expectedModel);
     });
 
     test('return null with wrong id', () {
       final mockData = [
-        const TaskModel(id: '1', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson(),
-        const TaskModel(id: '2', title: 'Title1', isDone: false, priority: PriorityLevel.important).toJson()
+        const TaskModel(
+                id: '1',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson(),
+        const TaskModel(
+                id: '2',
+                title: 'Title1',
+                isDone: false,
+                priority: PriorityLevel.important)
+            .toJson()
       ];
-      when(mockAppCache.getData(CacheTables.todoList, 'list')).thenReturn(mockData);
+      when(mockAppCache.getData(CacheTables.todoList, 'list'))
+          .thenReturn(mockData);
 
       final result = dataProvider.getTaskById('3');
       expect(result, null);

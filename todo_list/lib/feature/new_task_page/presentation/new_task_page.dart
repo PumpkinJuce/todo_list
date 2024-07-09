@@ -41,7 +41,8 @@ class NewTaskPage extends StatelessWidget {
         )..add(
             NewTasPageInit(task, taskId),
           ),
-        child: BlocBuilder<NewTaskPageBloc, NewTaskPageState>(builder: (context, state) {
+        child: BlocBuilder<NewTaskPageBloc, NewTaskPageState>(
+            builder: (context, state) {
           final bloc = context.read<NewTaskPageBloc>();
 
           if (state is NewTaskPageLoadingState) {
