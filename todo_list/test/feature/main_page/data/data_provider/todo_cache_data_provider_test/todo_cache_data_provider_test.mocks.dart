@@ -9,9 +9,6 @@ import 'package:hive/hive.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:todo_list/core/app_cache.dart/app_cache_hive_impl.dart' as _i2;
 import 'package:todo_list/core/app_cache.dart/cache_table_names.dart' as _i4;
-import 'package:todo_list/feature/main_page/data/model/task_model.dart' as _i7;
-import 'package:todo_list/feature/main_page/data/repository/todos_repository_impl.dart'
-    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -109,106 +106,4 @@ class MockHiveAppCache extends _i1.Mock implements _i2.HiveAppCache {
         ),
         returnValue: _i3.Stream<_i5.BoxEvent>.empty(),
       ) as _i3.Stream<_i5.BoxEvent>);
-}
-
-/// A class which mocks [TodosRepositoryImpl].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockTodosRepositoryImpl extends _i1.Mock
-    implements _i6.TodosRepositoryImpl {
-  MockTodosRepositoryImpl() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Stream<List<_i7.TaskModel>> get todoListStream => (super.noSuchMethod(
-        Invocation.getter(#todoListStream),
-        returnValue: _i3.Stream<List<_i7.TaskModel>>.empty(),
-      ) as _i3.Stream<List<_i7.TaskModel>>);
-
-  @override
-  List<_i7.TaskModel> get currentList => (super.noSuchMethod(
-        Invocation.getter(#currentList),
-        returnValue: <_i7.TaskModel>[],
-      ) as List<_i7.TaskModel>);
-
-  @override
-  _i3.FutureOr<void> addTask(_i7.TaskModel? task) =>
-      (super.noSuchMethod(Invocation.method(
-        #addTask,
-        [task],
-      )) as _i3.FutureOr<void>);
-
-  @override
-  _i3.FutureOr<void> deleteTaskById(String? id) =>
-      (super.noSuchMethod(Invocation.method(
-        #deleteTaskById,
-        [id],
-      )) as _i3.FutureOr<void>);
-
-  @override
-  _i3.FutureOr<void> updateTask(_i7.TaskModel? task) =>
-      (super.noSuchMethod(Invocation.method(
-        #updateTask,
-        [task],
-      )) as _i3.FutureOr<void>);
-
-  @override
-  _i3.Future<void> fetchData() => (super.noSuchMethod(
-        Invocation.method(
-          #fetchData,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-
-  @override
-  _i3.Future<void> syncData() => (super.noSuchMethod(
-        Invocation.method(
-          #syncData,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-
-  @override
-  void getDataFromCache() => super.noSuchMethod(
-        Invocation.method(
-          #getDataFromCache,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i3.Future<void> checkSyncDataAndFetchList() => (super.noSuchMethod(
-        Invocation.method(
-          #checkSyncDataAndFetchList,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-
-  @override
-  void dispose() => super.noSuchMethod(
-        Invocation.method(
-          #dispose,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i3.FutureOr<_i7.TaskModel?> getTaskById(
-    String? id, {
-    bool? checkFromCache = false,
-  }) =>
-      (super.noSuchMethod(Invocation.method(
-        #getTaskById,
-        [id],
-        {#checkFromCache: checkFromCache},
-      )) as _i3.FutureOr<_i7.TaskModel?>);
 }

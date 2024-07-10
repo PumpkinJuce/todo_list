@@ -46,10 +46,11 @@ void main() {
   group('addTask', () {
     test('calls appCache.putData', () async {
       const task = TaskModel(
-          id: '1',
-          title: 'Title1',
-          isDone: false,
-          priority: PriorityLevel.important);
+        id: '1',
+        title: 'Title1',
+        isDone: false,
+        priority: PriorityLevel.important,
+      );
       await dataProvider.addTask(task);
 
       verify(mockAppCache.putData(CacheTables.todoList, 'list', any)).called(1);

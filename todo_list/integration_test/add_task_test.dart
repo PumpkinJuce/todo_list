@@ -13,8 +13,7 @@ import 'package:todo_list/feature/main_page/domain/bloc/todos_bloc.dart';
 import 'package:todo_list/feature/main_page/presentation/main_page.dart';
 import 'package:todo_list/feature/main_page/presentation/widgets/priority_indicator.dart';
 import 'package:todo_list/feature/new_task_page/presentation/new_task_page.dart';
-
-import '../test/feature/main_page/data/data_provider/todo_cache_data_provider_test/todo_cache_data_provider_test.mocks.dart';
+import '../test/feature/main_page/data/repository/todos_repository_impl_test.mocks.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

@@ -45,7 +45,9 @@ class TodoDataProvider {
       final response = await _httpClient.patch(
         _path,
         options: Options(headers: _revisionHeader),
-        data: {"list": list.map((e) => e.toJson()).toList()},
+        data: {
+          "list": list.map((e) => e.toJson()).toList(),
+        },
       );
       if (response.statusCode != 200 || response.data['status'] != 'ok') {
         throw Exception(response.statusCode);
@@ -69,7 +71,9 @@ class TodoDataProvider {
       final response = await _httpClient.post(
         _path,
         options: Options(headers: _revisionHeader),
-        data: {"element": task.toJson()},
+        data: {
+          "element": task.toJson(),
+        },
       );
 
       if (response.statusCode != 200 || response.data['status'] != 'ok') {
