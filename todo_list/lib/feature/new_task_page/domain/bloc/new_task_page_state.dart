@@ -50,10 +50,28 @@ class NewTaskPageLoadingState extends NewTaskPageState {
   });
 
   @override
-  NewTaskPageLoadingState copyWith(
-      {bool? isButtonActive,
-      DateTime? deadlineDate,
-      PriorityLevel? priorityLevel}) {
+  NewTaskPageLoadingState copyWith({
+    bool? isButtonActive,
+    DateTime? deadlineDate,
+    PriorityLevel? priorityLevel,
+  }) {
+    return this;
+  }
+}
+
+class NewTaskPageErrorState extends NewTaskPageState {
+  const NewTaskPageErrorState({
+    super.isButtonActive = false,
+    super.priorityLevel = PriorityLevel.basic,
+    super.deadlineDate,
+  });
+
+  @override
+  NewTaskPageErrorState copyWith({
+    bool? isButtonActive,
+    DateTime? deadlineDate,
+    PriorityLevel? priorityLevel,
+  }) {
     return this;
   }
 }

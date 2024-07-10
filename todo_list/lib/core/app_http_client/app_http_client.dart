@@ -37,5 +37,6 @@ class AppHttpClient with DioMixin implements Dio {
     );
   }
 
+  // TODO(lebedeva): Переделать на взятие токена из файла
   static const String _token = 'Valimar';
 }

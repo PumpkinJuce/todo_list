@@ -83,6 +83,8 @@ class NewTaskPageBloc extends Bloc<NewTaskPageEvent, NewTaskPageState> {
         await repository.getTaskById(event.taskId, checkFromCache: true);
     if (task != null) {
       add(NewTasPageSetUpInitialData(task));
+    } else {
+      emit(const NewTaskPageErrorState());
     }
   }
 }

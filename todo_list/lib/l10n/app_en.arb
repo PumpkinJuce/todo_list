@@ -25,5 +25,7 @@
   
   "errorRoute": "Such a page does not exist",
 
-  "goBackHome": "Go back home"
+  "goBackHome": "Go back home",
+
+  "taskNotFound" : "Task was not found"
 }

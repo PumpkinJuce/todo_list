@@ -50,6 +50,15 @@ class NewTaskPage extends StatelessWidget {
               child: CupertinoActivityIndicator(color: AppColors.purple),
             );
           }
+          if (state is NewTaskPageErrorState) {
+            return Center(
+              child: Text(
+                localization.taskNotFound,
+                style: theme.textTheme.displayMedium,
+              ),
+            );
+          }
+
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: SingleChildScrollView(
