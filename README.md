@@ -21,12 +21,24 @@ Todo List - приложение для управления задачами с
 - Чекбокс задачи подсвечивается красным цветом, если дедлайн прошел, но задача не выполнена.
 - Выбор приоритета задачи: нет приоритета, средний, высокий.
 
-- Данные сохраняются в локальном хранилище
-- Данные хранятся на сервере
+### Offline работа приложения
+При добавлении\удалении\редактировании задач данные отправляются на сервер и в локальное хранилище.
+При отсутсвии интернета данные сохраняются в локальное хранилище.
+При каждом входе в приложение данные синхронизируются с сервером
+
+## Тестирование
+Добавлены unit-тесты для DataProvider'ов и репозиториев. 
+Также добавлен интеграционный тест на добавление новой задачи
+
+## Deep-linking
+
+URL приложения: https://pupkintodo.com/
+Создание новой задачи: https://pupkintodo.com/task
+Редактирование существующей задачи: https://pupkintodo.com/task/taskId (прим: https://pupkintodo.com/task/8af3823e-abb0-46c6-9e80-3f21538c55ee)
 
 ## Установка 
 
-Скачать apk можно по ссылке: [https://disk.yandex.ru/d/Uyf1osMDTEaxYQ](https://disk.yandex.ru/d/UpvLg-vqzXyrqQ)
+Скачать apk можно по ссылке: [https://disk.yandex.ru/d/MdRnbzlhN3cBxA](https://disk.yandex.ru/d/MdRnbzlhN3cBxA)
 
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235930_com.example.todo_list.jpg)
 ![Image alt](https://github.com/PumpkinJuce/todo_list/blob/main/Screenshot_20240622_235947_com.example.todo_list.jpg)
