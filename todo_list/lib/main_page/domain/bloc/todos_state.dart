@@ -18,3 +18,7 @@ class TodosInitialState extends TodosState {
 class TodosLoadingState extends TodosState {
   const TodosLoadingState(super.tasks, super.isFiltered, super.doneTasksCount);
 }
+
+class TodosErrorState extends TodosState {
+  const TodosErrorState(super.tasks, super.isFiltered, super.doneTasksCount);
+}

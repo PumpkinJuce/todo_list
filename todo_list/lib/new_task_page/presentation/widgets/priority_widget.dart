@@ -5,6 +5,7 @@ import 'package:todo_list/main_page/data/model/task_model.dart';
 import 'package:todo_list/main_page/presentation/widgets/decorated_container.dart';
 import 'package:todo_list/main_page/presentation/widgets/priority_indicator.dart';
 import 'package:todo_list/new_task_page/domain/bloc/new_task_page_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PriorityWidget extends StatelessWidget {
   const PriorityWidget({super.key});
@@ -18,7 +19,7 @@ class PriorityWidget extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              'Приоритет :',
+              '${AppLocalizations.of(context)!.priority} :',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(width: 10),
@@ -31,10 +32,10 @@ class PriorityWidget extends StatelessWidget {
 }
 
 extension PriorityLevelExtension on PriorityLevel {
-  String get title => switch (this) {
-        PriorityLevel.none => 'Нет',
-        PriorityLevel.medium => 'Средний',
-        PriorityLevel.heigh => 'Высокий',
+  String title(AppLocalizations localization) => switch (this) {
+        PriorityLevel.low => localization.no,
+        PriorityLevel.basic => localization.medium,
+        PriorityLevel.important => localization.heigh,
       };
 }
 
@@ -55,7 +56,7 @@ class _DropDownButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  priority.title,
+                  priority.title(AppLocalizations.of(context)!),
                   style: textTheme.bodyLarge,
                 ),
                 Padding(
@@ -67,7 +68,7 @@ class _DropDownButton extends StatelessWidget {
           );
         }).toList(),
         onChanged: (value) => context.read<NewTaskPageBloc>().add(
-            NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.none)),
+            NewTasPageChoosePriorityLevelEvent(value ?? PriorityLevel.low)),
         value: state.priorityLevel,
         style: textTheme.bodyMedium?.copyWith(
           color: AppColors.labelTertiary,

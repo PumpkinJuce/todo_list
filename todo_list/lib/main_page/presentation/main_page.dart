@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_list/app_router/app_router.dart';
 import 'package:todo_list/app_ui_kit/app_ui_kit.dart';
 import 'package:todo_list/main_page/domain/bloc/todos_bloc.dart';
@@ -86,7 +87,7 @@ class _AddNewTaskButton extends StatelessWidget {
       child: InkWell(
         onTap: () => AppRouter.of(context).pushNamed('/new-task'),
         child: Text(
-          'Добавить задачу',
+          AppLocalizations.of(context)!.addTask,
           style: Theme.of(context)
               .textTheme
               .bodyLarge

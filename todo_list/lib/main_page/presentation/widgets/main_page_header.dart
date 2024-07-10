@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_list/app_ui_kit/components/app_colors.dart';
 
 class MainPageHeader extends SliverPersistentHeaderDelegate {
@@ -63,7 +64,7 @@ class _WideVarianHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          'Мои дела',
+          AppLocalizations.of(context)!.myTasks,
           style: Theme.of(context).textTheme.displayMedium,
         ),
         InkWell(
@@ -89,12 +90,13 @@ class _NarrowVariantHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final localization = AppLocalizations.of(context)!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Мои дела',
+          localization.myTasks,
           style: textTheme.displayLarge,
         ),
         const SizedBox(height: 5),
@@ -102,7 +104,7 @@ class _NarrowVariantHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Выполнено - $doneTasksCount',
+              '${localization.done} - $doneTasksCount',
               style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
             ),
             InkWell(
